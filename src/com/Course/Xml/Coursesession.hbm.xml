@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.Course.Pojo.Coursesession" table="coursesession" schema="qlhp">
+        <composite-id name="idCoursesession" class="com.Course.Pojo.CoursesessionPK">
+            <key-many-to-one name="idSemester" class="com.Course.Pojo.Semester" lazy="false">
+                <column name="Seme_ID" sql-type="varchar(3)" length="3"/>
+                <column name="yearSeme" sql-type="varchar(9)" length="9"/>
+            </key-many-to-one>
+            <key-property name="timeBeg">
+                <column name="time_beg" sql-type="date"/>
+            </key-property>
+        </composite-id>
+        <property name="timeFin">
+            <column name="time_fin" sql-type="date"/>
+        </property>
+    </class>
+</hibernate-mapping>

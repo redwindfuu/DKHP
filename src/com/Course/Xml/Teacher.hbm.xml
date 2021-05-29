@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.Course.Pojo.Teacher" table="teacher" schema="qlhp">
+        <id name="keyTeacher">
+            <column name="key_teacher" sql-type="int"/>
+        </id>
+        <property name="passwordTea">
+            <column name="password_TEA" sql-type="varchar(8)" length="8" not-null="true"/>
+        </property>
+        <property name="idTea">
+            <column name="ID_TEA" sql-type="varchar(8)" length="8"/>
+        </property>
+        <property name="nameTea">
+            <column name="name_TEA" sql-type="varchar(20)" length="20" not-null="true"/>
+        </property>
+        <property name="sex">
+            <column name="sex" sql-type="varchar(3)" length="3" not-null="true"/>
+        </property>
+        <property name="birthday">
+            <column name="birthday" sql-type="date" not-null="true"/>
+        </property>
+        <property name="numberPhone">
+            <column name="numberPhone" sql-type="varchar(10)" length="10" not-null="true"/>
+        </property>
+        <property name="address">
+            <column name="Address" sql-type="varchar(50)" length="50" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

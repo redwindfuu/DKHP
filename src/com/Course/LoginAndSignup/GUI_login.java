@@ -1,6 +1,8 @@
 package com.Course.LoginAndSignup;
 
 
+import com.Course.DAO.StudentDAO;
+import com.Course.Pojo.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import org.hibernate.HibernateException;
 
 
 import java.io.IOException;
@@ -72,7 +75,7 @@ public class GUI_login implements Initializable {
         String type = Accounttypebox.getValue().toString();
         Parent root;
         if(type == "Sinh viên"){
-            /*Student doituong = null;
+            Student doituong = null;
             String tk = UserText.getText();
             try {
                 doituong = StudentDAO.getStudent(tk);
@@ -99,7 +102,7 @@ public class GUI_login implements Initializable {
                 }
             }else{
                 loginmessagelabel.setText("invalid login please try again");
-            }*/
+            }
 
         }else if(type == "Giáo vụ"){
              Alert alert = new Alert(Alert.AlertType.INFORMATION);

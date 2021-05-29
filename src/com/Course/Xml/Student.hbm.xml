@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.Course.Pojo.Student" table="student" schema="qlhp">
+        <id name="keyStudent">
+            <column name="key_Student" sql-type="int"/>
+            <generator class="identity"/>
+        </id>
+        <property name="passwordStu">
+            <column name="password_stu" sql-type="varchar(8)" length="8" not-null="true"/>
+        </property>
+        <property name="idStu">
+            <column name="ID_Stu" unique="true" sql-type="varchar(8)" length="8"/>
+        </property>
+        <property name="nameStu">
+            <column name="name_stu" sql-type="varchar(20)" length="20" not-null="true"/>
+        </property>
+        <property name="sex">
+            <column name="sex" sql-type="varchar(3)" length="3" not-null="true"/>
+        </property>
+        <property name="birthday">
+            <column name="birthday" sql-type="date" not-null="true"/>
+        </property>
+        <property name="numberPhone">
+            <column name="numberPhone" sql-type="varchar(10)" length="10" not-null="true"/>
+        </property>
+        <property name="address">
+            <column name="Address" sql-type="varchar(50)" length="50" not-null="true"/>
+        </property>
+
+        <many-to-one class="com.Course.Pojo.ClaSs" name="idClass" fetch="join" cascade="save-update" lazy="false">
+            <column name ="ID_Clss" not-null="false"/>
+        </many-to-one>
+        <set inverse="false"  name="courses" table="registration"  lazy="false" fetch="join" cascade="save-update">
+            <key foreign-key="com.Course.Pojo.Student">
+                <column name="key_student" sql-type="int" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.Course.Pojo.Course">
+                <column name="ID_ob"  sql-type="varchar(10)" length="10" />
+                <column name="seme_ID" sql-type="varchar(3)" length="3" />
+                <column name="yearSeme" sql-type="varchar(9)" length="9"/>
+                <column name="time_beg" sql-type="date" />
+                <column name="room"     sql-type="varchar(3)" length="3"/>
+                <column name="daystudy" sql-type="tinyint"/>
+                <column name="timestudy" sql-type="tinyint"/>
+            </many-to-many>
+
+        </set>
+    </class>
+</hibernate-mapping>
