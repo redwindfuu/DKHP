@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="684.0" prefWidth="564.0" style="-fx-background-color: #00fbff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Course.LoginAndSignup.GUI_Signup">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="600.8" minWidth="0.0" prefWidth="564.8" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="600.8" minWidth="0.0" prefWidth="0.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="222.79999389648438" minHeight="10.0" prefHeight="75.99999084472657" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="551.6" minHeight="10.0" prefHeight="515.2000091552734" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="186.00003662109373" minHeight="0.0" prefHeight="76.20001220703125" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Pane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="70.0" layoutY="15.0" prefHeight="38.0" prefWidth="425.0" text="Đăng Kí Tài Khoản" textAlignment="CENTER">
+               <font>
+                  <Font name="System Italic" size="38.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <GridPane prefHeight="508.0" prefWidth="565.0" GridPane.rowIndex="1">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="275.60003662109375" minWidth="10.0" prefWidth="29.79994926452636" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="275.60003662109375" minWidth="10.0" prefWidth="121.79998779296875" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="490.7999801635742" minWidth="10.0" prefWidth="392.20001220703125" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="490.7999801635742" minWidth="10.0" prefWidth="63.4000244140625" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="368.8" minHeight="0.0" prefHeight="61.200009155273435" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="349.99999084472654" minHeight="0.0" prefHeight="54.399987792968744" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="351.99999084472654" minHeight="0.0" prefHeight="61.600006103515625" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="329.5999877929687" minHeight="10.0" prefHeight="52.600012207031256" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="355.399984741211" minHeight="0.0" prefHeight="50.39998779296877" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="329.5999877929687" minHeight="0.0" prefHeight="55.20001220703125" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="329.5999877929687" minHeight="5.999981689453136" prefHeight="59.199951171875" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="329.5999877929687" minHeight="0.0" prefHeight="65.60004882812501" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="329.5999877929687" minHeight="10.0" prefHeight="65.60003662109375" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="108.0" text="Họ và Tên:" textAlignment="CENTER" GridPane.columnIndex="1">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="64.0" prefHeight="30.0" prefWidth="108.0" text="Password:" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="109.0" prefHeight="30.0" prefWidth="108.0" text="Password:" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="varName" text="Nguyễn Văn A" GridPane.columnIndex="2">
+               <opaqueInsets>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </opaqueInsets>
+            </TextField>
+            <PasswordField fx:id="varPassword" text="Mật Khẩu" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <PasswordField fx:id="varRePassword" text="Mật Khẩu" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="18.0" prefHeight="30.0" prefWidth="108.0" text="Ngày Sinh:" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <DatePicker fx:id="DateOfBirth" promptText="1-1-1980" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="145.0" prefHeight="25.0" prefWidth="108.0" text="Địa Chỉ:" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="Address" layoutX="136.0" layoutY="19.0" text="số 123a ,phường A, Quận B ,TP C" GridPane.columnIndex="2" GridPane.rowIndex="5">
+               <opaqueInsets>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </opaqueInsets>
+            </TextField>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="186.0" prefHeight="30.0" prefWidth="108.0" text="Số Điện Thoại:" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="NumberPhone" layoutX="136.0" layoutY="188.0" text="0xxxxxxxxx" GridPane.columnIndex="2" GridPane.rowIndex="6">
+               <opaqueInsets>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </opaqueInsets>
+            </TextField>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="236.0" prefHeight="30.0" prefWidth="108.0" text="Loại Tài Khoản:" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="7">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="TypeAcc" prefHeight="26.0" prefWidth="252.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <TextField fx:id="varID" layoutX="136.0" layoutY="238.0" prefHeight="26.0" prefWidth="348.0" text="STxxx hoặc TCxxx" GridPane.columnIndex="2" GridPane.rowIndex="8">
+               <opaqueInsets>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </opaqueInsets>
+            </TextField>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="279.0" prefHeight="30.0" prefWidth="118.0" text="Mã Số :" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="8">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="29.0" layoutY="422.0" prefHeight="30.0" prefWidth="118.0" text="Giới tính :" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+            </Label>
+            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <children>
+                  <RadioButton fx:id="Male" layoutX="14.0" layoutY="12.0" mnemonicParsing="false" onAction="#getMale" prefHeight="29.0" prefWidth="108.0" selected="true" text="Nam">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="ListGender" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="Female" layoutX="209.0" layoutY="16.0" mnemonicParsing="false" onAction="#getFemale" prefHeight="22.0" prefWidth="42.0" text="Nữ" toggleGroup="$ListGender">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </RadioButton>
+               </children>
+            </Pane>
+         </children>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </GridPane>
+      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+         <children>
+            <Button fx:id="registerButton" layoutX="181.0" layoutY="29.0" mnemonicParsing="false" onAction="#registerButtonOnAction" prefHeight="30.0" prefWidth="176.0" text="Đăng Kí" />
+            <Label fx:id="MessageInput" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="240.0" layoutY="5.0" textAlignment="CENTER" textFill="#a61313" textOverrun="WORD_ELLIPSIS" />
+         </children>
+      </Pane>
+   </children>
+</GridPane>
