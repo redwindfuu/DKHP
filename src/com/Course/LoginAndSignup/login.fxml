@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Course.LoginAndSignup.GUI_login">
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Course.LoginAndSignup.GUI_login">
     <center>
         <GridPane style="-fx-background-color: #4fd4e8;" BorderPane.alignment="CENTER">
             <columnConstraints>
@@ -94,6 +105,7 @@
                             </font>
                         </Label>
                         <Label fx:id="loginmessagelabel" alignment="CENTER" contentDisplay="CENTER" layoutX="54.0" layoutY="111.0" prefHeight="17.0" prefWidth="159.0" textAlignment="CENTER" textFill="#790d0d" />
+                  <ProgressIndicator fx:id="progress" layoutX="54.0" layoutY="69.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="71.0" prefWidth="84.0" visible="false" />
                     </children>
                 </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">

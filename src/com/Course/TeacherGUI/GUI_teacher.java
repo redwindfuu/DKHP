@@ -1,5 +1,6 @@
 package com.Course.TeacherGUI;
 
+import com.Course.Pojo.Teacher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +23,7 @@ public class GUI_teacher implements Initializable {
     @FXML
     private ImageView TeacherAvatar;
 
+    private Teacher User;
 
 // Trang thông tin giáo vụ
     @FXML
@@ -40,9 +42,31 @@ public class GUI_teacher implements Initializable {
     private GridPane ReinfoPanel;
     @FXML
     private GridPane InfoPane;
+    @FXML
+    private Label helloWorld;
 
-    public void setUsers(){
+    public void setUsers(Teacher users){
+        this.User = users;
+        helloWorld.setText("Xin chào, "+User.getNameTea());
+        TT_name.setText(User.getNameTea());
+        TT_ID.setText(User.getIdTea());
+        TT_numberphone.setText(User.getNumberPhone());
+        TT_sex.setText(User.getSex());
+        TT_Address.setText(User.getAddress());
+        TT_Type.setText("Sinh viên");
+        TT_birth.setText(User.getBirthday().toString());
 
+        ReputName.setText(User.getNameTea());
+        reputNumberPhone.setText(User.getNumberPhone());
+        if(User.getSex().equals("Nam")){
+            Male.setSelected(true);
+        }else{
+            female.setSelected(true);
+        }
+        reputAddress.setText(User.getAddress());
+        reputID.setText(User.getIdTea());
+        reputID.setEditable(false);
+        reputBirth.setValue(User.getBirthday().toLocalDate());
     }
 
     public void OutonAction(ActionEvent e) throws IOException {

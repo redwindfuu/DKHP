@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="678.0" prefWidth="945.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Course.StudentGUI.GUI_student">
    <center>
       <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
@@ -227,7 +243,66 @@
           </Tab>
           <Tab text="Đăng kí học phần">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BorderPane layoutX="186.0" layoutY="40.0" prefHeight="556.0" prefWidth="945.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <center>
+                              <Pane prefHeight="556.0" prefWidth="877.0" style="-fx-background-color: #00fbff;" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <TableView fx:id="Userhocphan" layoutX="14.0" layoutY="36.0" prefHeight="199.0" prefWidth="795.0">
+                                      <columns>
+                                        <TableColumn prefWidth="177.60000324249268" text="Tên học Phần" />
+                                        <TableColumn prefWidth="79.99995422363281" text="Năm học " />
+                                          <TableColumn prefWidth="88.00006103515625" text="thời gian mở" />
+                                          <TableColumn prefWidth="116.79998779296875" text="thời gian đóng " />
+                                          <TableColumn prefWidth="55.20001220703125" text="phòng" />
+                                          <TableColumn prefWidth="80.79998779296875" text="Ngày học" />
+                                          <TableColumn prefWidth="103.20001220703125" text="Ca học" />
+                                          <TableColumn minWidth="0.0" prefWidth="55.20001220703125" text="slot" />
+                                          <TableColumn prefWidth="34.20001220703125" text="hủy" />
+                                      </columns>
+                                    </TableView>
+                                    <TableView fx:id="hocphanmo" layoutX="14.0" layoutY="290.0" prefHeight="221.0" prefWidth="797.0">
+                                       <columns>
+                                          <TableColumn prefWidth="182.39999103546143" text="Tên học Phần" />
+                                          <TableColumn prefWidth="85.59999084472656" text="Năm học " />
+                                          <TableColumn prefWidth="88.800048828125" text="thời gian mở" />
+                                          <TableColumn prefWidth="116.79998779296875" text="thời gian đóng " />
+                                          <TableColumn prefWidth="53.5999755859375" text="phòng" />
+                                          <TableColumn prefWidth="72.800048828125" text="Ngày học" />
+                                          <TableColumn prefWidth="98.4000244140625" text="Ca học" />
+                                          <TableColumn minWidth="0.0" prefWidth="56.79998779296875" text="slot" />
+                                          <TableColumn prefWidth="38.400146484375" text="Chọn" />
+                                       </columns>
+                                    </TableView>
+                                    <Label alignment="CENTER_RIGHT" layoutX="706.0" layoutY="247.0" prefHeight="31.0" prefWidth="102.0" text="Học Phần Mở :" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="System Bold Italic" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" layoutX="662.0" layoutY="5.0" prefHeight="31.0" prefWidth="146.0" text="Học Phần Đã Đăng kí :" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="System Bold Italic" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                           </center>
+                           <right>
+                              <Pane prefHeight="556.0" prefWidth="117.0" style="-fx-background-color: #0c827a;" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button layoutX="15.0" layoutY="466.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="91.0" style="-fx-background-color: #f2f215;" text="Xác Nhận" />
+                                    <Label alignment="CENTER" layoutX="21.0" layoutY="27.0" prefHeight="17.0" prefWidth="79.0" text="Học Kì">
+                                       <font>
+                                          <Font name="System Bold Italic" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="labelSeme" alignment="CENTER" layoutX="5.0" layoutY="52.0" prefHeight="29.0" prefWidth="110.0" text="HK" textAlignment="CENTER" />
+                                    <Label fx:id="shoolyear" alignment="CENTER" layoutX="4.0" layoutY="81.0" prefHeight="29.0" prefWidth="110.0" text="2xxx-2xx1" textAlignment="CENTER" />
+                                 </children></Pane>
+                           </right>
+                        </BorderPane>
+                     </children></AnchorPane>
             </content>
           </Tab>
         </tabs>
@@ -240,9 +315,9 @@
                <font>
                   <Font name="Bell MT Italic" size="29.0" />
                </font></Label>
-            <Label fx:id="helloWorld" layoutX="774.0" layoutY="6.0" prefHeight="25.0" prefWidth="151.0" text="Xin Chào ,User">
+            <Label fx:id="helloWorld" layoutX="718.0" layoutY="14.0" prefHeight="25.0" prefWidth="212.0" text="Xin Chào ,User" textFill="#ddff00">
                <font>
-                  <Font size="13.0" />
+                  <Font size="16.0" />
                </font></Label>
             <Label fx:id="LabelOut" alignment="CENTER" layoutX="850.0" layoutY="31.0" onMouseClicked="#OutonActionforLabel" prefHeight="31.0" prefWidth="82.0" text="Đăng xuất" textFill="#e7ff14" underline="true">
                <font>

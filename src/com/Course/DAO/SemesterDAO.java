@@ -24,6 +24,40 @@ public class SemesterDAO {
         return lst;
     }
 
+    public static Semester getMainSemester(){
+        Session session = HibernateUtil.getSession();
+        List<Semester> lst = null;
+        try {
+            final String hql = "select st from Semester st where st.thisSeme = 1";
+            Query query = session.createQuery(hql);
+            lst = query.list();
+        }catch (HibernateException ex){
+            ex.printStackTrace();
+        }
+        if(lst.size() == 1)
+            return lst.get(0);
+        else
+        return null;
+    }
+    public static boolean setMainSemester(Semester seme){
+        Session session = HibernateUtil.getSession();
+        List<Semester> lst = null;
+        try {
+            final String hql = "select st from Semester st where st.thisSeme = 1 ";
+            Query query = session.createQuery(hql);
+            lst = query.list();
+        }catch (HibernateException ex){
+            ex.printStackTrace();
+        }
+        for (Semester temp: lst) {
+            temp.setThisSeme(0);
+            SemesterDAO.updateSemester(temp);
+        }
+        seme.setThisSeme(1);
+        SemesterDAO.updateSemester(seme);
+        return true;
+    }
+
     public static boolean isExistsSemester(SemesterPK idSv){
         Session session  = HibernateUtil.getSession();
         List<Semester> lst = null;

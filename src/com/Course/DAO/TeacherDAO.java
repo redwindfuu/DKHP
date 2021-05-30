@@ -48,7 +48,7 @@ public class TeacherDAO {
         Session session = HibernateUtil.getSession();
         Teacher st = null;
         try{
-            String hql ="select st from Teacher st where st.idStu = : ID";
+            String hql ="select st from Teacher st where st.idTea = : ID";
             st = (Teacher) session.createQuery(hql).setString("ID",idSv).uniqueResult();
 
         }catch (HibernateException ex){

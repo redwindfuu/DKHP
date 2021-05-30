@@ -9,6 +9,16 @@ public class Semester {
     private SemesterPK idSemester;
     private Date daybeg;
     private Date dayfinal;
+    private int thisSeme;
+
+
+    public int getThisSeme() {
+        return thisSeme;
+    }
+
+    public void setThisSeme(int thisSeme) {
+        this.thisSeme = thisSeme;
+    }
 
     public Semester() {
 
@@ -17,6 +27,7 @@ public class Semester {
         this.idSemester = idSemester;
         this.daybeg = daybeg;
         this.dayfinal = dayfinal;
+        this.thisSeme =0;
     }
 
     public Semester(SemesterPK idSemester) {

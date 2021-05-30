@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="678.0" prefWidth="945.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Course.TeacherGUI.GUI_teacher">
    <center>
       <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
@@ -102,7 +116,7 @@
                                     </Pane>
                                  </children>
                               </GridPane>
-                              <GridPane fx:id="InfoPane" layoutX="10.0" layoutY="10.0" style="-fx-background-color: #00fbff;" visible="false">
+                              <GridPane fx:id="InfoPane" layoutX="10.0" layoutY="10.0" style="-fx-background-color: #00fbff;">
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="390.79998779296875" minWidth="10.0" prefWidth="82.4" />
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="390.79998779296875" minWidth="10.0" prefWidth="102.00003662109376" />
@@ -125,11 +139,26 @@
                                     <Label text="Số điện thoại" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                                     <Label text="Ngày sinh" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                     <Label text="Nghề Nghiệp" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <Label fx:id="TT_name" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                    <Label fx:id="TT_ID" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                    <Label fx:id="TT_Type" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                    <Label fx:id="TT_Address" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                                    <Label fx:id="TT_numberphone" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                    <Label fx:id="TT_name" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="System Bold Italic" size="13.0" />
+                                       </font></Label>
+                                    <Label fx:id="TT_ID" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="System Bold Italic" size="13.0" />
+                                       </font></Label>
+                                    <Label fx:id="TT_Type" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font name="System Bold Italic" size="13.0" />
+                                       </font></Label>
+                                    <Label fx:id="TT_Address" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                       <font>
+                                          <Font name="System Bold Italic" size="13.0" />
+                                       </font></Label>
+                                    <Label fx:id="TT_numberphone" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                                       <font>
+                                          <Font name="System Bold Italic" size="13.0" />
+                                       </font></Label>
                                     <Label text="Thông tin Sinh Viên" GridPane.columnIndex="2">
                                        <font>
                                           <Font size="53.0" />
@@ -137,14 +166,20 @@
                                     </Label>
                                     <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
                                        <children>
-                                          <Label fx:id="TT_birth" layoutY="13.0" text="Label" />
+                                          <Label fx:id="TT_birth" layoutY="13.0" text="Label">
+                                             <font>
+                                                <Font name="System Bold Italic" size="13.0" />
+                                             </font></Label>
                                           <Label layoutX="210.0" layoutY="14.0" prefHeight="18.0" prefWidth="58.0" text="Giới tính" />
-                                          <Label fx:id="TT_sex" layoutX="308.0" layoutY="14.0" text="Label" />
+                                          <Label fx:id="TT_sex" layoutX="308.0" layoutY="14.0" text="Label">
+                                             <font>
+                                                <Font name="System Bold Italic" size="13.0" />
+                                             </font></Label>
                                        </children>
                                     </Pane>
                                  </children>
                               </GridPane>
-                              <GridPane fx:id="RePassPane" style="-fx-background-color: #00fbff;">
+                              <GridPane fx:id="RePassPane" style="-fx-background-color: #00fbff;" visible="false">
                                 <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="392.4000244140625" minWidth="10.0" prefWidth="46.9999755859375" />
                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="392.4000244140625" minWidth="10.0" prefWidth="131.8000244140625" />
@@ -241,9 +276,9 @@
                <font>
                   <Font name="Calibri Italic" size="29.0" />
                </font></Label>
-            <Label layoutX="774.0" layoutY="6.0" prefHeight="25.0" prefWidth="151.0" text="Xin Chào ,User">
+            <Label fx:id="helloWorld" layoutX="732.0" layoutY="7.0" prefHeight="25.0" prefWidth="204.0" text="Xin Chào ,User" textFill="#eae60f">
                <font>
-                  <Font size="13.0" />
+                  <Font size="14.0" />
                </font></Label>
             <Label fx:id="LabelOut" alignment="CENTER" layoutX="850.0" layoutY="31.0" onMouseClicked="#OutonActionforLabel" prefHeight="31.0" prefWidth="82.0" text="Đăng xuất" textFill="#e7ff14" underline="true">
                <font>

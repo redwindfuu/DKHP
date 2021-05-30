@@ -19,5 +19,8 @@
         <property name="dayfinal">
             <column name="dayfinal" sql-type="date" not-null="true"/>
         </property>
+        <property name="thisSeme">
+            <column name="this" sql-type="int" not-null="true"/>
+        </property>
     </class>
 </hibernate-mapping>

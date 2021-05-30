@@ -2,7 +2,11 @@ package com.Course.LoginAndSignup;
 
 
 import com.Course.DAO.StudentDAO;
+import com.Course.DAO.TeacherDAO;
 import com.Course.Pojo.Student;
+import com.Course.Pojo.Teacher;
+import com.Course.StudentGUI.GUI_student;
+import com.Course.TeacherGUI.GUI_teacher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -34,11 +38,14 @@ public class GUI_login implements Initializable {
     private TextField UserText;
     @FXML
     private PasswordField PasswordText;
+    @FXML
+    private ProgressIndicator progress ;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Accounttypebox.setValue("Sinh viên");
         Accounttypebox.setItems(AccounttypeList);
+        progress.setVisible(false);
     }
 
 
@@ -58,10 +65,10 @@ public class GUI_login implements Initializable {
 
 
     public void loginButtonOnAction(ActionEvent e){
+        progress.setVisible(true);
         if(UserText.getText().isBlank() && PasswordText.getText().isBlank()){
             loginmessagelabel.setText("invalid login please try again");
         }else {
-
             try {
                 validatelogin();
             } catch (IOException ioException) {
@@ -92,7 +99,12 @@ public class GUI_login implements Initializable {
                 alert.showAndWait();
                 Stage stage = (Stage) cancelButton.getScene().getWindow();
                 stage.close();
-                root = FXMLLoader.load(getClass().getResource("/com/Course/StudentGUI/GUI_student.fxml"));
+                System.out.println(doituong.getNameStu());
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/com/Course/StudentGUI/GUI_student.fxml"));
+                root = loader.load();
+                GUI_student control = loader.getController();
+                control.setUsers(doituong);
                 Stage signUpStage = new Stage();
                 signUpStage.setTitle("Quản Lý Học Phần");
                 signUpStage.setScene(new Scene(root, 945, 678));
@@ -105,18 +117,37 @@ public class GUI_login implements Initializable {
             }
 
         }else if(type == "Giáo vụ"){
-             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            Teacher doituong = null;
+            String tk = UserText.getText();
+            try {
+                doituong = TeacherDAO.getTeacher(tk);
+            }catch (HibernateException f){
+                f.printStackTrace();
+                System.out.println("loi ");
+            }
+            if(doituong != null) {
+                if (doituong.isConnectPass(PasswordText.getText())){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Đăng nhập");
                 alert.setContentText("Đăng nhập tài khoản Giáo vụ");
                 alert.showAndWait();
-                    Stage stage = (Stage) cancelButton.getScene().getWindow();
-                    stage.close();
-                    root = FXMLLoader.load(getClass().getResource("/com/Course/TeacherGUI/GUI_teacher.fxml"));
-                    Stage signUpStage = new Stage();
-                    signUpStage.setTitle("Quản Lý Học Phần");
-                    signUpStage.setScene(new Scene(root, 945, 678));
-                    signUpStage.show();
-
+                Stage stage = (Stage) cancelButton.getScene().getWindow();
+                stage.close();
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/com/Course/TeacherGUI/GUI_teacher.fxml"));
+                root = loader.load();
+                GUI_teacher control =loader.getController();
+                control.setUsers(doituong);
+                Stage signUpStage = new Stage();
+                signUpStage.setTitle("Quản Lý Học Phần");
+                signUpStage.setScene(new Scene(root, 945, 678));
+                signUpStage.show();
+                }else{
+                    loginmessagelabel.setText("Password please try again");
+                }
+            }else{
+                loginmessagelabel.setText("invalid login please try again");
+            }
 
         }else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -124,6 +155,7 @@ public class GUI_login implements Initializable {
             alert.setContentText("Lỗi chọn tài khoản");
             alert.showAndWait();
         }
+        progress.setVisible(false);
     }
 
 
