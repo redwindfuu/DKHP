@@ -1,9 +1,17 @@
 package com.Course.StudentGUI;
 
+import com.Course.DAO.CourseDAO;
+import com.Course.DAO.SemesterDAO;
 import com.Course.DAO.StudentDAO;
 import com.Course.Pojo.Course;
+import com.Course.Pojo.Semester;
 import com.Course.Pojo.Student;
+import javafx.beans.value.ChangeListener;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -25,7 +34,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class GUI_student implements Initializable {
-
+    private Semester MainSemester;
     private Student User;
     @FXML
     private Button ButtonInformation;
@@ -49,7 +58,7 @@ public class GUI_student implements Initializable {
     private Label helloWorld;
 
     public void setUsers(Student users){
-        this.User = users;
+        this.User = StudentDAO.getStudent(users.getIdStu());
         helloWorld.setText("Xin chào, "+User.getNameStu());
         TT_name.setText(User.getNameStu());
         TT_ID.setText(User.getIdStu());
@@ -112,16 +121,7 @@ public class GUI_student implements Initializable {
         ReinfoPanel.setVisible(false);
         RePassPane.setVisible(true);
     }
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        File Avafile =new File("img/graduate-user-icon.png");
-        Image image = new Image(Avafile.toURI().toString());
-        StudentAvatar.setImage(image);
 
-
-
-
-    }
 // thông tin sinh viên
 
 
@@ -223,14 +223,170 @@ public class GUI_student implements Initializable {
     }
 // Đăng kí học Phần
 
-    @FXML
-    private TableView<Course> Userhocphan;
-    @FXML
-    private TableView<Course> hocphanmo;
+
     @FXML
     private Label labelSeme;
     @FXML
     private Label schoolyear;
+    @FXML
+    private TableView<viewCourse> Userhocphan;
+    @FXML
+    private TableView<viewCourse> hocphanmo;
+    @FXML
+    private TableColumn<viewCourse,String> Mamon;
+    @FXML
+    private TableColumn<viewCourse,String> TenGV;
+    @FXML
+    private TableColumn<viewCourse,String> Hocki;
+    @FXML
+    private TableColumn<viewCourse,String> Namhoc;
+    @FXML
+    private TableColumn<viewCourse,Date> Thoigianmo;
+    @FXML
+    private TableColumn<viewCourse,Date> Thoigaindong;
+    @FXML
+    private TableColumn<viewCourse,String> Phong;
+    @FXML
+    private TableColumn<viewCourse,String> Ngayhoc;
+    @FXML
+    private TableColumn<viewCourse,String> Cahoc;
+    @FXML
+    private TableColumn<viewCourse,Integer> Slot;
+    @FXML
+    private TableColumn<viewCourse,CheckBox> huymon;
+    @FXML
+    private TableColumn<viewCourse,String> Mamon1;
+    @FXML
+    private TableColumn<viewCourse,String> TenGV1;
+    @FXML
+    private TableColumn<viewCourse,String> Hocki1;
+    @FXML
+    private TableColumn<viewCourse,String> Namhoc1;
+    @FXML
+    private TableColumn<viewCourse,Date> Thoigianmo1;
+    @FXML
+    private TableColumn<viewCourse,Date> Thoigaindong1;
+    @FXML
+    private TableColumn<viewCourse,String> Phong1;
+    @FXML
+    private TableColumn<viewCourse,String> Ngayhoc1;
+    @FXML
+    private TableColumn<viewCourse,String> Cahoc1;
+    @FXML
+    private TableColumn<viewCourse,Integer> Slot1;
+    @FXML
+    private TableColumn<viewCourse,CheckBox> chonmon;
+    @FXML
+    private Button buttonrefesh;
+    @FXML
+    private Button capnhat;
+    private final ObservableList<viewCourse> forCourseList = FXCollections.observableArrayList();
+    private final ObservableList<viewCourse> forStudentList = FXCollections.observableArrayList();
+    public void ChangeDKHP(ActionEvent e) {
+        forStudentList.clear();
+        forCourseList.clear();
+        for (Course h: User.getCourses()) {
+            System.out.println(h.toString());
+            forStudentList.add(new viewCourse(h));
+        }
+
+        for (Course h: CourseDAO.getALlCourseList()) {
+            if(!User.getCourses().contains(h))
+                forCourseList.add(new viewCourse(h));
+        }
+
+        hocphanmo.setItems(forCourseList);
+        Userhocphan.setItems(forStudentList);
+
+    }
+
+
+    public void capnhaOnAction(ActionEvent e){
+        for (viewCourse h: forStudentList) {
+            if(h.getSelecte().isSelected()){
+                User.getCourses().remove(h);
+                StudentDAO.updateStudent(User);
+            }
+        }
+        for (viewCourse h: forCourseList) {
+            if(h.getSelecte().isSelected()){
+                if(User.getCourses().size() + 1 <8){
+                User.getCourses().add(h.getHocphan());
+                StudentDAO.updateStudent(User);
+                }else{
+                    Alert alert = new Alert(AlertType.CONFIRMATION);
+                    alert.setTitle("Chỉnh sửa");
+                    alert.setContentText("Chỉnh sửa học phần thất bại");
+                    alert.showAndWait();
+                    break;
+                }
+            }
+        }
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Chỉnh sửa");
+        alert.setContentText("Nhấn nút Làm mới xem kết quả");
+        alert.showAndWait();
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        File Avafile =new File("img/graduate-user-icon.png");
+        Image image = new Image(Avafile.toURI().toString());
+        StudentAvatar.setImage(image);
+        MainSemester = SemesterDAO.getMainSemester();
+        labelSeme.setText(MainSemester.getIdSemester().getSemeId());
+        schoolyear.setText(MainSemester.getIdSemester().getYearSeme());
+
+        //set table
+        Mamon.setCellValueFactory(new PropertyValueFactory<viewCourse,String>("mamon"));
+        TenGV.setCellValueFactory(new PropertyValueFactory<viewCourse,String>("Giaovien"));
+        Hocki.setCellValueFactory(new PropertyValueFactory<viewCourse,String>("hocki"));
+        Namhoc.setCellValueFactory(new PropertyValueFactory<viewCourse,String>("Namhoc"));
+        Thoigianmo.setCellValueFactory(new PropertyValueFactory<viewCourse,Date>("Thoigianmo"));
+        Thoigaindong.setCellValueFactory(new PropertyValueFactory<viewCourse,Date>("Thoigiandong"));
+        Phong.setCellValueFactory(new PropertyValueFactory<viewCourse,String>("phong"));
+        Ngayhoc.setCellValueFactory(new PropertyValueFactory<viewCourse,String>("Ngayhoc"));
+        Cahoc.setCellValueFactory(new PropertyValueFactory<viewCourse,String>("Ca"));
+        Slot.setCellValueFactory(new PropertyValueFactory<viewCourse,Integer>("Slot"));
+        huymon.setCellValueFactory(new PropertyValueFactory<viewCourse,CheckBox>("selecte"));
+        //
+        Mamon1.setCellValueFactory(new PropertyValueFactory<viewCourse,String>("mamon"));
+        TenGV1.setCellValueFactory(new PropertyValueFactory<viewCourse,String>("Giaovien"));
+        Hocki1.setCellValueFactory(new PropertyValueFactory<viewCourse,String>("hocki"));
+        Namhoc1.setCellValueFactory(new PropertyValueFactory<viewCourse,String>("Namhoc"));
+        Thoigianmo1.setCellValueFactory(new PropertyValueFactory<viewCourse,Date>("Thoigianmo"));
+        Thoigaindong1.setCellValueFactory(new PropertyValueFactory<viewCourse,Date>("Thoigiandong"));
+        Phong1.setCellValueFactory(new PropertyValueFactory<viewCourse,String>("phong"));
+        Ngayhoc1.setCellValueFactory(new PropertyValueFactory<viewCourse,String>("Ngayhoc"));
+        Cahoc1.setCellValueFactory(new PropertyValueFactory<viewCourse,String>("Ca"));
+        Slot1.setCellValueFactory(new PropertyValueFactory<viewCourse,Integer>("Slot"));
+        chonmon.setCellValueFactory(new PropertyValueFactory<viewCourse,CheckBox>("selecte"));
+
+
+    }
+
+
+
 
 
 

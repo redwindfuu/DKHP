@@ -249,31 +249,20 @@
                            <center>
                               <Pane prefHeight="556.0" prefWidth="877.0" style="-fx-background-color: #00fbff;" BorderPane.alignment="CENTER">
                                  <children>
-                                    <TableView fx:id="Userhocphan" layoutX="14.0" layoutY="36.0" prefHeight="199.0" prefWidth="795.0">
+                                    <TableView fx:id="Userhocphan" layoutX="14.0" layoutY="36.0" prefHeight="199.0" prefWidth="812.0">
                                       <columns>
-                                        <TableColumn prefWidth="177.60000324249268" text="Tên học Phần" />
-                                        <TableColumn prefWidth="79.99995422363281" text="Năm học " />
-                                          <TableColumn prefWidth="88.00006103515625" text="thời gian mở" />
-                                          <TableColumn prefWidth="116.79998779296875" text="thời gian đóng " />
-                                          <TableColumn prefWidth="55.20001220703125" text="phòng" />
-                                          <TableColumn prefWidth="80.79998779296875" text="Ngày học" />
-                                          <TableColumn prefWidth="103.20001220703125" text="Ca học" />
-                                          <TableColumn minWidth="0.0" prefWidth="55.20001220703125" text="slot" />
-                                          <TableColumn prefWidth="34.20001220703125" text="hủy" />
+                                        <TableColumn fx:id="Mamon" prefWidth="53.599976539611816" text="Mã Môn" />
+                                          <TableColumn fx:id="TenGV" prefWidth="109.60000610351562" text="Giáo viên" />
+                                          <TableColumn fx:id="Hocki" prefWidth="50.399993896484375" text="Học kì" />
+                                        <TableColumn fx:id="Namhoc" prefWidth="95.20002746582031" text="Năm học " />
+                                          <TableColumn fx:id="Thoigianmo" prefWidth="102.39996337890625" text="thời gian mở" />
+                                          <TableColumn fx:id="Thoigaindong" prefWidth="97.60003662109375" text="thời gian đóng " />
+                                          <TableColumn fx:id="Phong" minWidth="0.0" prefWidth="65.5999755859375" text="phòng" />
+                                          <TableColumn fx:id="Ngayhoc" prefWidth="84.0" text="Ngày học" />
+                                          <TableColumn fx:id="Cahoc" minWidth="0.0" prefWidth="69.5999755859375" text="Ca học" />
+                                          <TableColumn fx:id="Slot" prefWidth="38.4000244140625" text="slot" />
+                                          <TableColumn fx:id="huymon" prefWidth="41.60003662109375" text="Hủy" />
                                       </columns>
-                                    </TableView>
-                                    <TableView fx:id="hocphanmo" layoutX="14.0" layoutY="290.0" prefHeight="221.0" prefWidth="797.0">
-                                       <columns>
-                                          <TableColumn prefWidth="182.39999103546143" text="Tên học Phần" />
-                                          <TableColumn prefWidth="85.59999084472656" text="Năm học " />
-                                          <TableColumn prefWidth="88.800048828125" text="thời gian mở" />
-                                          <TableColumn prefWidth="116.79998779296875" text="thời gian đóng " />
-                                          <TableColumn prefWidth="53.5999755859375" text="phòng" />
-                                          <TableColumn prefWidth="72.800048828125" text="Ngày học" />
-                                          <TableColumn prefWidth="98.4000244140625" text="Ca học" />
-                                          <TableColumn minWidth="0.0" prefWidth="56.79998779296875" text="slot" />
-                                          <TableColumn prefWidth="38.400146484375" text="Chọn" />
-                                       </columns>
                                     </TableView>
                                     <Label alignment="CENTER_RIGHT" layoutX="706.0" layoutY="247.0" prefHeight="31.0" prefWidth="102.0" text="Học Phần Mở :" textAlignment="CENTER">
                                        <font>
@@ -285,20 +274,36 @@
                                           <Font name="System Bold Italic" size="12.0" />
                                        </font>
                                     </Label>
+                                    <TableView fx:id="hocphanmo" layoutX="14.0" layoutY="278.0" prefHeight="261.0" prefWidth="812.0">
+                                       <columns>
+                                          <TableColumn fx:id="Mamon1" prefWidth="53.599976539611816" text="Mã Môn" />
+                                          <TableColumn fx:id="TenGV1" prefWidth="109.60000610351562" text="Giáo viên" />
+                                          <TableColumn fx:id="Hocki1" prefWidth="50.399993896484375" text="Học kì" />
+                                          <TableColumn fx:id="Namhoc1" prefWidth="95.20002746582031" text="Năm học " />
+                                          <TableColumn fx:id="Thoigianmo1" prefWidth="102.39996337890625" text="thời gian mở" />
+                                          <TableColumn fx:id="Thoigaindong1" prefWidth="97.60003662109375" text="thời gian đóng " />
+                                          <TableColumn fx:id="Phong1" minWidth="0.0" prefWidth="65.5999755859375" text="phòng" />
+                                          <TableColumn fx:id="Ngayhoc1" prefWidth="84.0" text="Ngày học" />
+                                          <TableColumn fx:id="Cahoc1" minWidth="0.0" prefWidth="69.5999755859375" text="Ca học" />
+                                          <TableColumn fx:id="Slot1" prefWidth="38.4000244140625" text="slot" />
+                                          <TableColumn fx:id="chonmon" prefWidth="41.60003662109375" text="Chọn" />
+                                       </columns>
+                                    </TableView>
                                  </children>
                               </Pane>
                            </center>
                            <right>
                               <Pane prefHeight="556.0" prefWidth="117.0" style="-fx-background-color: #0c827a;" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Button layoutX="15.0" layoutY="466.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="91.0" style="-fx-background-color: #f2f215;" text="Xác Nhận" />
+                                    <Button fx:id="capnhat" layoutX="15.0" layoutY="466.0" mnemonicParsing="false" onAction="#capnhaOnAction" prefHeight="39.0" prefWidth="91.0" style="-fx-background-color: #f2f215;" text="Xác Nhận" />
                                     <Label alignment="CENTER" layoutX="21.0" layoutY="27.0" prefHeight="17.0" prefWidth="79.0" text="Học Kì">
                                        <font>
                                           <Font name="System Bold Italic" size="12.0" />
                                        </font>
                                     </Label>
                                     <Label fx:id="labelSeme" alignment="CENTER" layoutX="5.0" layoutY="52.0" prefHeight="29.0" prefWidth="110.0" text="HK" textAlignment="CENTER" />
-                                    <Label fx:id="shoolyear" alignment="CENTER" layoutX="4.0" layoutY="81.0" prefHeight="29.0" prefWidth="110.0" text="2xxx-2xx1" textAlignment="CENTER" />
+                                    <Label fx:id="schoolyear" alignment="CENTER" layoutX="4.0" layoutY="81.0" prefHeight="29.0" prefWidth="110.0" text="2xxx-2xx1" textAlignment="CENTER" />
+                                    <Button fx:id="buttonrefesh" layoutX="16.0" layoutY="404.0" mnemonicParsing="false" onAction="#ChangeDKHP" prefHeight="37.0" prefWidth="91.0" style="-fx-background-color: #f2f215;" text="Làm mới" />
                                  </children></Pane>
                            </right>
                         </BorderPane>
