@@ -22,6 +22,8 @@ public class CourseDAO {
             lst = query.list();
         } catch (HibernateException e) {
             e.printStackTrace();
+        }finally {
+            session.close();
         }
         return lst;
     }
@@ -35,6 +37,8 @@ public class CourseDAO {
             lst = query.list();
         } catch (HibernateException e) {
             e.printStackTrace();
+        }finally {
+            session.close();
         }
         for (Course n : lst) {
             if(n.getIdCourse().equals(idSv)){

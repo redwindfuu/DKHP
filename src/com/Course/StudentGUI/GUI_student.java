@@ -304,7 +304,8 @@ public class GUI_student implements Initializable {
     public void capnhaOnAction(ActionEvent e){
         for (viewCourse h: forStudentList) {
             if(h.getSelecte().isSelected()){
-                User.getCourses().remove(h);
+                User.getCourses().remove(h.getHocphan());
+                System.out.println(h.getHocphan().getIdCourse().getIdOb().getNameOb());
                 StudentDAO.updateStudent(User);
             }
         }
@@ -329,7 +330,44 @@ public class GUI_student implements Initializable {
 
 
     }
+    @FXML
+    private Button viewButton;
 
+    public void viewButtonClicked(ActionEvent e) throws IOException {
+        viewCourse h = (viewCourse)Userhocphan.getSelectionModel().getSelectedItem();
+        viewCourse h2 = (viewCourse)hocphanmo.getSelectionModel().getSelectedItem();
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("GUI_view.fxml"));
+        root = loader.load();
+        if(h2 ==null && h == null){
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Xem");
+            alert.setContentText("Không có lựa chọn nào");
+            alert.showAndWait();
+        }else{
+           if(h!=null){
+
+               GUI_view doituong = loader.getController();
+               doituong.setChoice(h);
+
+
+               Stage stage = new Stage();
+
+               stage.setTitle("Quản Lý Học Phần");
+               stage.setScene(new Scene(root, 600, 400));
+               stage.show();
+           }
+           if(h2!=null){
+               GUI_view doituong = loader.getController();
+               doituong.setChoice(h2);
+               Stage stage1 = new Stage();
+               stage1.setTitle("Quản Lý Học Phần");
+               stage1.setScene(new Scene(root, 600, 400));
+               stage1.show();
+           }
+        }
+    }
 
 
 

@@ -303,7 +303,8 @@
                                     </Label>
                                     <Label fx:id="labelSeme" alignment="CENTER" layoutX="5.0" layoutY="52.0" prefHeight="29.0" prefWidth="110.0" text="HK" textAlignment="CENTER" />
                                     <Label fx:id="schoolyear" alignment="CENTER" layoutX="4.0" layoutY="81.0" prefHeight="29.0" prefWidth="110.0" text="2xxx-2xx1" textAlignment="CENTER" />
-                                    <Button fx:id="buttonrefesh" layoutX="16.0" layoutY="404.0" mnemonicParsing="false" onAction="#ChangeDKHP" prefHeight="37.0" prefWidth="91.0" style="-fx-background-color: #f2f215;" text="Làm mới" />
+                                    <Button fx:id="buttonrefesh" layoutX="16.0" layoutY="409.0" mnemonicParsing="false" onAction="#ChangeDKHP" prefHeight="37.0" prefWidth="91.0" style="-fx-background-color: #f2f215;" text="Làm mới" />
+                                    <Button fx:id="viewButton" layoutX="16.0" layoutY="351.0" mnemonicParsing="false" onAction="#viewButtonClicked" prefHeight="37.0" prefWidth="90.0" style="-fx-background-color: #f2f215;" text="Xem" />
                                  </children></Pane>
                            </right>
                         </BorderPane>

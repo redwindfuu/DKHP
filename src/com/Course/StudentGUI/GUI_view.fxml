@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Course.StudentGUI.GUI_view">
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: 0x43E9E4;" BorderPane.alignment="CENTER">
+         <children>
+            <GridPane layoutX="33.0" layoutY="29.0" prefHeight="243.0" prefWidth="549.0">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.20001220703125" minWidth="10.0" prefWidth="95.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="418.8" minWidth="10.0" prefWidth="355.2000244140625" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="76.60001220703126" minHeight="10.0" prefHeight="31.8000244140625" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="150.19998779296876" minHeight="10.0" prefHeight="38.9999755859375" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="101.40000762939454" minHeight="10.0" prefHeight="34.59999237060545" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="91.40000762939454" minHeight="10.0" prefHeight="35.4000244140625" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="91.40000762939454" minHeight="10.0" prefHeight="35.4000244140625" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="80.9999755859375" minHeight="10.0" prefHeight="39.599999999999994" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label prefHeight="26.0" prefWidth="106.0" text="Mã Môn học" />
+                  <Label text="Tên Môn học" GridPane.rowIndex="1" />
+                  <Label text="Tên giảng viên" GridPane.rowIndex="2" />
+                  <Label text="Số tính chỉ" GridPane.rowIndex="3" />
+                  <Label text="Giờ học" GridPane.rowIndex="5" />
+                  <Label fx:id="Mamon" text="Label" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="tenMon" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Tengv" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="sotinchi" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="giohoc" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label text="Slot" GridPane.rowIndex="4" />
+                  <Label fx:id="Slot" layoutX="154.0" layoutY="140.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+         </children>
+      </Pane>
+   </center>
+   <top>
+      <Pane prefHeight="86.0" prefWidth="600.0" style="-fx-background-color: #7ff0e9;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="sachlabel" fitHeight="85.0" fitWidth="93.0" layoutX="14.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../img/book.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="147.0" layoutY="8.0" prefHeight="61.0" prefWidth="404.0" text="Thông tin chi tiết">
+               <font>
+                  <Font name="System Bold" size="49.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </top>
+</BorderPane>

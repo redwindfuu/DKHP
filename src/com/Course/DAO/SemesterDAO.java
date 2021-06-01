@@ -48,6 +48,8 @@ public class SemesterDAO {
             lst = query.list();
         }catch (HibernateException ex){
             ex.printStackTrace();
+        }finally {
+            session.close();
         }
         for (Semester temp: lst) {
             temp.setThisSeme(0);

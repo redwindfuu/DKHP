@@ -19,6 +19,8 @@ public class ObjectDAO {
             lst = query.list();
         } catch (HibernateException e) {
             e.printStackTrace();
+        }finally {
+            session.close();
         }
         return lst;
     }
@@ -32,6 +34,8 @@ public class ObjectDAO {
             lst = query.list();
         } catch (HibernateException e) {
             e.printStackTrace();
+        }finally {
+            session.close();
         }
         for (Object n : lst) {
             if(n.getIdOb().equals(idSv)){

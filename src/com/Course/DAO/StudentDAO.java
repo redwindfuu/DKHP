@@ -19,6 +19,8 @@ public class StudentDAO {
             lst = query.list();
         } catch (HibernateException e) {
             e.printStackTrace();
+        }finally {
+            session.close();
         }
         return lst;
     }
@@ -32,6 +34,8 @@ public class StudentDAO {
             lst = query.list();
         } catch (HibernateException e) {
             e.printStackTrace();
+        }finally {
+            session.close();
         }
         for (Student n : lst) {
             if(n.getIdStu().equals(idSv)){

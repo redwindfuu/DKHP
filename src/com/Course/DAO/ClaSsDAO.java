@@ -20,6 +20,8 @@ public class ClaSsDAO {
             lst = query.list();
         } catch (HibernateException e) {
             e.printStackTrace();
+        }finally {
+            session.close();
         }
         return lst;
     }
