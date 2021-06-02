@@ -1,8 +1,10 @@
 package com.Course.TeacherGUI;
 
+import com.Course.DAO.ObjectDAO;
 import com.Course.DAO.SemesterDAO;
 import com.Course.DAO.StudentDAO;
 import com.Course.DAO.TeacherDAO;
+import com.Course.Pojo.Object;
 import com.Course.Pojo.Semester;
 import com.Course.Pojo.Teacher;
 import com.Course.StudentGUI.GUI_student;
@@ -91,9 +93,6 @@ public class GUI_teacher implements Initializable {
         reputID.setEditable(false);
         reputBirth.setValue(User.getBirthday().toLocalDate());
     }
-
-
-
     public void OutonAction(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/Course/LoginAndSignup/login.fxml"));
         Stage signUpStage = new Stage();
@@ -222,6 +221,104 @@ public class GUI_teacher implements Initializable {
     }
 
 // Trang môn học
+     @FXML
+     private TextField laytimkiemmamon;
+    @FXML
+    private  TableView<Object> BangMonHoc;
+    @FXML
+    private TableColumn<Object,String> Mamon_column;
+    @FXML
+    private TableColumn<Object,String> tenmon_column;
+    @FXML
+    private TableColumn<Object,Integer> Sotinchi_column;
+    @FXML
+    private Button timkiemmamon;
+    @FXML
+    private Button themmon;
+    @FXML
+    private Button capnhatmon;
+    @FXML
+    private Button xoamon;
+    private ObservableList<Object> ObjectList;
+
+    public void timkiemamonOnAction(ActionEvent e){
+        String result = laytimkiemmamon.getText();
+        ObservableList<Object> resultList = FXCollections.observableArrayList();
+        Object h = ObjectDAO.getObject(result);
+        if(h != null){
+            resultList.add(h);
+        }
+        BangMonHoc.setItems(resultList);
+        if(result.trim() == ""){
+            BangMonHoc.setItems(ObjectList);
+        }
+
+    }
+    public void themmonOnAction(ActionEvent e) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/com/Course/TeacherGUI/TeacherListGUI/themGV.fxml"));
+        Parent root = loader.load();
+        Stage signUpStage = new Stage();
+        signUpStage.setTitle("Chỉnh Sửa giáo vụ");
+        signUpStage.setScene(new Scene(root, 609, 570));
+        signUpStage.show();
+        signUpStage.setOnHiding( event -> {
+            teachersList = FXCollections.observableArrayList(TeacherDAO.getALlTeacherList());
+            BangGV.setItems(teachersList);
+        } );
+    }
+    public void capnhatmonOnAction(ActionEvent e) throws IOException {
+        Teacher result = BangGV.getSelectionModel().getSelectedItem();
+        if(result != null) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/com/Course/TeacherGUI/TeacherListGUI/setTTGV.fxml"));
+            Parent root = loader.load();
+            setTTGV control = loader.getController();
+            control.SetTeacher(result);
+            Stage signUpStage = new Stage();
+            signUpStage.setTitle("Chỉnh Sửa giáo vụ");
+            signUpStage.setScene(new Scene(root, 609, 570));
+            signUpStage.show();
+            signUpStage.setOnHiding( event -> {
+                teachersList = FXCollections.observableArrayList(TeacherDAO.getALlTeacherList());
+                BangGV.setItems(teachersList);
+                setUsers(TeacherDAO.getTeacher(User.getIdTea()));
+            } );
+        }
+    }
+    public void xoamonOnAction(ActionEvent e){
+        String str ="";
+        Object result = BangMonHoc.getSelectionModel().getSelectedItem();
+        if(result != null){
+            ObjectDAO.deleteObject(result.getIdOb());
+            str ="Xóa thành công";
+        }else {
+            str ="Xóa thất bại";
+        }
+        Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+        alert1.setTitle("Xóa Môn học");
+        alert1.setContentText(str);
+        alert1.showAndWait();
+        ObjectList = FXCollections.observableArrayList(ObjectDAO.getALlObjectList());
+        BangMonHoc.setItems(ObjectList);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Trang Đăng kí Học Phần
@@ -263,6 +360,9 @@ public class GUI_teacher implements Initializable {
             resultList.add(h);
         }
         BangGV.setItems(resultList);
+        if(result.trim() == ""){
+            BangGV.setItems(teachersList);
+        }
     }
     public void ResetGVButton(ActionEvent e){
         String str =null;
@@ -311,13 +411,8 @@ public class GUI_teacher implements Initializable {
                 teachersList = FXCollections.observableArrayList(TeacherDAO.getALlTeacherList());
                 BangGV.setItems(teachersList);
                 setUsers(TeacherDAO.getTeacher(User.getIdTea()));
-
             } );
         }
-
-
-
-
     }
     public void XoaGVButton(ActionEvent e){
         String str ="";
@@ -388,8 +483,13 @@ public class GUI_teacher implements Initializable {
         SDTGV_coulumn.setCellValueFactory(new PropertyValueFactory<Teacher,String>("numberPhone"));
         DiachiGV_column.setCellValueFactory(new PropertyValueFactory<Teacher,String>("address"));
         BangGV.setItems(teachersList);
-
-
+        //Bảng Môn học
+        ObjectList = FXCollections.observableArrayList(ObjectDAO.getALlObjectList());
+        Mamon_column.setCellValueFactory(new PropertyValueFactory<Object,String>("idOb"));
+        tenmon_column.setCellValueFactory(new PropertyValueFactory<Object,String>("nameOb"));
+        Sotinchi_column.setCellValueFactory(new PropertyValueFactory<Object,Integer>("credit"));
+        BangMonHoc.setItems(ObjectList);
+        //
 
 
 

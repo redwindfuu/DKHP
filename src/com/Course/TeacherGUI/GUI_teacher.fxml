@@ -236,11 +236,6 @@
                   </BorderPane>
                </content>
           </Tab>
-            <Tab text="Lớp học">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-               </content>
-            </Tab>
             <Tab text="Môn học">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #00fbff;">
@@ -252,12 +247,12 @@
                               <TableColumn fx:id="Sotinchi_column" prefWidth="101.60009765625" text="Số tính chỉ" />
                            </columns>
                         </TableView>
-                        <Button fx:id="timkiemmamon" layoutX="543.0" layoutY="16.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="Tìm kiếm" />
+                        <Button fx:id="timkiemmamon" layoutX="543.0" layoutY="16.0" mnemonicParsing="false" onAction="#timkiemamonOnAction" prefHeight="25.0" prefWidth="112.0" text="Tìm kiếm" />
                         <Label layoutX="22.0" layoutY="13.0" prefHeight="32.0" prefWidth="112.0" text="Nhập Mã Môn học :" />
                         <TextField fx:id="laytimkiemmamon" layoutX="146.0" layoutY="17.0" prefHeight="26.0" prefWidth="377.0" />
-                        <Button layoutX="822.0" layoutY="504.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="116.0" text="Xóa" fx:id="xoamon" />
-                        <Button fx:id="capnhatmon" layoutX="822.0" layoutY="458.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="116.0" text="Cập Nhật" />
-                        <Button fx:id="themmon" layoutX="822.0" layoutY="414.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="116.0" text="Thêm" />
+                        <Button layoutX="822.0" layoutY="504.0" mnemonicParsing="false" onAction="#xoamonOnAction" prefHeight="32.0" prefWidth="116.0" text="Xóa" fx:id="xoamon" />
+                        <Button fx:id="themmon" layoutX="822.0" layoutY="414.0" mnemonicParsing="false" onAction="#themmonOnAction" prefHeight="32.0" prefWidth="116.0" text="Thêm" />
+                        <Button fx:id="capnhatmon" layoutX="822.0" layoutY="458.0" mnemonicParsing="false" onAction="#capnhatmonOnAction" prefHeight="32.0" prefWidth="116.0" text="Cập Nhật" />
                      </children>
                   </AnchorPane>
                </content>
@@ -300,6 +295,28 @@
                         <Button fx:id="resetmkgv" layoutX="822.0" layoutY="370.0" mnemonicParsing="false" onAction="#ResetGVButton" prefHeight="32.0" prefWidth="116.0" text="Reset Mật khẩu" />
                      </children></AnchorPane>
               </content>
+            </Tab>
+            <Tab text="Lớp Học">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #00fbff;">
+                     <children>
+                        <TableView fx:id="BangMonHoc1" layoutX="22.0" layoutY="61.0" prefHeight="474.0" prefWidth="786.0">
+                           <columns>
+                              <TableColumn fx:id="Mamon_column1" prefWidth="80.80001449584961" text="STT" />
+                              <TableColumn fx:id="tenmon_column1" minWidth="0.0" prefWidth="224.00001525878906" text="Tên Lớp" />
+                              <TableColumn fx:id="Sotinchi_column1" prefWidth="193.5999755859375" text="Số Sinh Viên " />
+                              <TableColumn fx:id="Sotinchi_column11" prefWidth="131.20001220703125" text="Số Sinh Viên Nam" />
+                              <TableColumn fx:id="Sotinchi_column111" prefWidth="156.0" text="Số Sinh Viên Nữ" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="timkiemmamon1" layoutX="543.0" layoutY="16.0" mnemonicParsing="false" onAction="#timkiemamonOnAction" prefHeight="25.0" prefWidth="112.0" text="Tìm kiếm" />
+                        <Label layoutX="22.0" layoutY="13.0" prefHeight="32.0" prefWidth="112.0" text="Nhập Mã Lớp học :" />
+                        <TextField fx:id="laytimkiemmamon1" layoutX="146.0" layoutY="17.0" prefHeight="26.0" prefWidth="377.0" />
+                        <Button layoutX="822.0" layoutY="504.0" mnemonicParsing="false" onAction="#xoamonOnAction" prefHeight="32.0" prefWidth="116.0" text="Xóa" fx:id="xoamon1" />
+                        <Button fx:id="themmon1" layoutX="822.0" layoutY="414.0" mnemonicParsing="false" onAction="#themmonOnAction" prefHeight="32.0" prefWidth="116.0" text="Thêm" />
+                     </children>
+                  </AnchorPane>
+               </content>
             </Tab>
         </tabs>
       </TabPane>
