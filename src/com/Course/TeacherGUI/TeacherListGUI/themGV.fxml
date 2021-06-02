@@ -104,7 +104,7 @@
                   </DatePicker>
                   <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
-                        <RadioButton fx:id="Nam" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" selected="true" text="Nam">
+                        <RadioButton fx:id="Nam" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#getMale" selected="true" text="Nam">
                            <toggleGroup>
                               <ToggleGroup fx:id="GenderList" />
                            </toggleGroup>
@@ -112,7 +112,7 @@
                               <Font size="15.0" />
                            </font>
                         </RadioButton>
-                        <RadioButton fx:id="Nu" layoutX="148.0" layoutY="18.0" mnemonicParsing="false" text="Nữ" toggleGroup="$GenderList">
+                        <RadioButton fx:id="Nu" layoutX="148.0" layoutY="18.0" mnemonicParsing="false" onAction="#getFemale" text="Nữ" toggleGroup="$GenderList">
                            <font>
                               <Font size="15.0" />
                            </font>

@@ -8,10 +8,20 @@ public class Object implements Serializable {
     private String idOb;
     private String nameOb;
     private long credit;
+
+    public Object() {
+
+    }
+
     public String getIdOb() {
         return idOb;
     }
 
+    public Object(String idOb, String nameOb, long credit) {
+        this.idOb = idOb;
+        this.nameOb = nameOb;
+        this.credit = credit;
+    }
 
     @Override
     public String toString() {

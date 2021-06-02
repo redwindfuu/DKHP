@@ -39,7 +39,14 @@ public class themGV implements Initializable {
     @FXML
     private Button ThemButton;
     String Gender ="Nam";
-
+    public void getMale(ActionEvent e) {
+        Gender = Nam.getText();
+        // System.out.print(Gender);
+    }
+    public void getFemale(ActionEvent e) {
+        Gender = Nu.getText();
+        //   System.out.print(Gender);
+    }
 
     public void ThemButtonClick(ActionEvent e){
         if(!Hoten.getText().trim().isEmpty() && !Diachi.getText().trim().isEmpty()

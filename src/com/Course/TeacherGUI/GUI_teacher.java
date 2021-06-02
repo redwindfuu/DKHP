@@ -8,6 +8,7 @@ import com.Course.Pojo.Object;
 import com.Course.Pojo.Semester;
 import com.Course.Pojo.Teacher;
 import com.Course.StudentGUI.GUI_student;
+import com.Course.TeacherGUI.ObjectListGUI.setTTBomon;
 import com.Course.TeacherGUI.TeacherListGUI.setTTGV;
 import javafx.beans.value.ObservableListValue;
 import javafx.collections.FXCollections;
@@ -256,33 +257,32 @@ public class GUI_teacher implements Initializable {
     }
     public void themmonOnAction(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/com/Course/TeacherGUI/TeacherListGUI/themGV.fxml"));
+        loader.setLocation(getClass().getResource("/com/Course/TeacherGUI/ObjectListGUI/themBomon.fxml"));
         Parent root = loader.load();
         Stage signUpStage = new Stage();
         signUpStage.setTitle("Chỉnh Sửa giáo vụ");
-        signUpStage.setScene(new Scene(root, 609, 570));
+        signUpStage.setScene(new Scene(root, 610, 443));
         signUpStage.show();
         signUpStage.setOnHiding( event -> {
-            teachersList = FXCollections.observableArrayList(TeacherDAO.getALlTeacherList());
-            BangGV.setItems(teachersList);
+            ObjectList = FXCollections.observableArrayList(ObjectDAO.getALlObjectList());
+            BangMonHoc.setItems(ObjectList);
         } );
     }
     public void capnhatmonOnAction(ActionEvent e) throws IOException {
-        Teacher result = BangGV.getSelectionModel().getSelectedItem();
+        Object result = BangMonHoc.getSelectionModel().getSelectedItem();
         if(result != null) {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/com/Course/TeacherGUI/TeacherListGUI/setTTGV.fxml"));
+            loader.setLocation(getClass().getResource("/com/Course/TeacherGUI/ObjectListGUI/setTTBomon.fxml"));
             Parent root = loader.load();
-            setTTGV control = loader.getController();
-            control.SetTeacher(result);
+            setTTBomon control = loader.getController();
+            control.SetObject(result);
             Stage signUpStage = new Stage();
             signUpStage.setTitle("Chỉnh Sửa giáo vụ");
-            signUpStage.setScene(new Scene(root, 609, 570));
+            signUpStage.setScene(new Scene(root, 610, 443));
             signUpStage.show();
             signUpStage.setOnHiding( event -> {
-                teachersList = FXCollections.observableArrayList(TeacherDAO.getALlTeacherList());
-                BangGV.setItems(teachersList);
-                setUsers(TeacherDAO.getTeacher(User.getIdTea()));
+                ObjectList = FXCollections.observableArrayList(ObjectDAO.getALlObjectList());
+                BangMonHoc.setItems(ObjectList);
             } );
         }
     }
@@ -302,7 +302,11 @@ public class GUI_teacher implements Initializable {
         ObjectList = FXCollections.observableArrayList(ObjectDAO.getALlObjectList());
         BangMonHoc.setItems(ObjectList);
     }
-
+    @FXML
+    private void tabMonhoc(Event event) {
+        ObjectList = FXCollections.observableArrayList(ObjectDAO.getALlObjectList());
+        BangMonHoc.setItems(ObjectList);
+    }
 
 
 
