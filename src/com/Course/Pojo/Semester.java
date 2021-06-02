@@ -73,11 +73,7 @@ public class Semester {
 
     @Override
     public String toString() {
-        return "Semester{" +
-                "idSemester=" + idSemester.toString() +
-                ", daybeg=" + daybeg.toString() +
-                ", dayfinal=" + dayfinal.toString() +
-                '}';
+        return  idSemester.toString() ;
     }
 }
 

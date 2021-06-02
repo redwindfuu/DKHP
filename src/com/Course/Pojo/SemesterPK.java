@@ -7,6 +7,15 @@ public class SemesterPK implements Serializable {
     private String semeId;
     private String yearSeme;
 
+    public SemesterPK(String semeId, String yearSeme) {
+        this.semeId = semeId;
+        this.yearSeme = yearSeme;
+    }
+
+    public SemesterPK() {
+
+    }
+
     public String getSemeId() {
         return semeId;
     }
@@ -38,9 +47,6 @@ public class SemesterPK implements Serializable {
 
     @Override
     public String toString() {
-        return "SemesterPK{" +
-                "semeId='" + semeId + '\'' +
-                ", yearSeme='" + yearSeme + '\'' +
-                '}';
+        return  semeId + " năm học " + yearSeme;
     }
 }

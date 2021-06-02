@@ -6,6 +6,7 @@ import com.Course.DAO.StudentDAO;
 import com.Course.DAO.TeacherDAO;
 import com.Course.Pojo.Object;
 import com.Course.Pojo.Semester;
+import com.Course.Pojo.SemesterPK;
 import com.Course.Pojo.Teacher;
 import com.Course.StudentGUI.GUI_student;
 import com.Course.TeacherGUI.ObjectListGUI.setTTBomon;
@@ -29,6 +30,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -66,9 +68,6 @@ public class GUI_teacher implements Initializable {
     private Label LabelHK;
     @FXML
     private Label LabelNamhoc;
-
-
-
 
 
     public void setUsers(Teacher users){
@@ -144,8 +143,6 @@ public class GUI_teacher implements Initializable {
     private Label TT_birth;
     @FXML
     private Label TT_sex;
-
-
 
     //Chỉnh sửa thông tin giản viên
     @FXML
@@ -308,25 +305,138 @@ public class GUI_teacher implements Initializable {
         BangMonHoc.setItems(ObjectList);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Trang Đăng kí Học Phần
+
+
 // Trang học kì
+    @FXML
+    private Label M_LabelHocKi;
+    @FXML
+    private Label M_LabelNamhoc;
+    @FXML
+    private Label M_LabelNgayBD;
+    @FXML
+    private Label M_LabelNgayKT;
+    private ObservableList<String> lstHK =  FXCollections.observableArrayList("HK1","HK2","Hk3");
+    @FXML
+    private ChoiceBox<String> inputHK;
+    @FXML
+    private TextField inputNamhoc;
+    @FXML
+    private DatePicker NgayBDHK;
+    @FXML
+    private DatePicker NgayKTHK;
+    @FXML
+    private Label TTLabelHK;
+    @FXML
+    private Label TTLabelNamhoc;
+    @FXML
+    private Label TTLabel_NgayBD;
+    @FXML
+    private Label TTLabel_NgayKT;
+    @FXML
+    private ChoiceBox<Semester> inputSearchSeme;
+    @FXML
+    private Button SearchSeButton;
+    @FXML
+    private Button TaoHK;
+    @FXML
+    private Button SetMainHK;
+    @FXML
+    private Button DeleteHK;
+    private ObservableList<Semester> SemesterList ;
+
+
+
+
+
+
+
+
+
+
+    @FXML
+    private void tabHocki(Event event) {
+        inputHK.setItems(lstHK);
+        inputHK.setValue("HK1");
+        SemesterList = FXCollections.observableArrayList(SemesterDAO.getALlSemesterList());
+        MainSemester = SemesterDAO.getMainSemester();
+        M_LabelHocKi.setText(MainSemester.getIdSemester().getSemeId());
+        M_LabelNamhoc.setText(MainSemester.getIdSemester().getYearSeme());
+        M_LabelNgayBD.setText(MainSemester.getDaybeg().toString());
+        M_LabelNgayKT.setText(MainSemester.getDayfinal().toString());
+        TTLabelHK.setText(MainSemester.getIdSemester().getSemeId());
+        TTLabelNamhoc.setText(MainSemester.getIdSemester().getYearSeme());
+        TTLabel_NgayBD.setText(MainSemester.getDaybeg().toString());
+        TTLabel_NgayKT.setText(MainSemester.getDayfinal().toString());
+        inputSearchSeme.setItems(SemesterList);
+        inputSearchSeme.setValue(MainSemester);
+
+    }
+    @FXML
+    private void SearchSeButtononAction(ActionEvent actionEvent) {
+        Semester result =inputSearchSeme.getValue();
+        TTLabelHK.setText(result.getIdSemester().getSemeId());
+        TTLabelNamhoc.setText(result.getIdSemester().getYearSeme());
+        TTLabel_NgayBD.setText(result.getDaybeg().toString());
+        TTLabel_NgayKT.setText(result.getDayfinal().toString());
+    }
+
+    @FXML
+    private void SetMainHKonAction(ActionEvent actionEvent) {
+        Semester result =inputSearchSeme.getValue();
+        SemesterDAO.setMainSemester(result);
+        MainSemester = SemesterDAO.getMainSemester();
+        M_LabelHocKi.setText(MainSemester.getIdSemester().getSemeId());
+        M_LabelNamhoc.setText(MainSemester.getIdSemester().getYearSeme());
+        M_LabelNgayBD.setText(MainSemester.getDaybeg().toString());
+        M_LabelNgayKT.setText(MainSemester.getDayfinal().toString());
+        Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+        alert1.setTitle("Học kì");
+        alert1.setContentText("đặt học kì chính thành công");
+        alert1.showAndWait();
+    }
+
+    @FXML
+    private void DeleteHKonAction(ActionEvent actionEvent) {
+        Semester result =inputSearchSeme.getValue();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Xác nhận");
+        alert.setContentText("Bạn có muốn xóa học kì không ?, nó sẽ xóa toàn bộ học phần , kì đăng kí học phần liên quan");
+        Optional<ButtonType> option = alert.showAndWait();
+        if (option.get() == ButtonType.OK){
+            SemesterDAO.deleteSemester(result.getIdSemester().getYearSeme(),result.getIdSemester().getSemeId());
+        }
+        SemesterList = FXCollections.observableArrayList(SemesterDAO.getALlSemesterList());
+        inputSearchSeme.setItems(SemesterList);
+        inputSearchSeme.setValue(MainSemester);
+    }
+
+    @FXML
+    private void TaoHKonAction(ActionEvent actionEvent) {
+        String str ="";
+        if(!inputNamhoc.getText().isEmpty() && inputNamhoc.getText().length() == 9 &&NgayBDHK != null && NgayKTHK!= null){
+            SemesterPK keySemester = new SemesterPK(inputHK.getValue(),inputNamhoc.getText());
+            Semester h = SemesterDAO.getSemester(inputNamhoc.getText(),inputHK.getValue());
+            if(h == null) {
+                Semester newSemester = new Semester(keySemester, Date.valueOf(NgayBDHK.getValue()), Date.valueOf(NgayKTHK.getValue()));
+                SemesterDAO.addSemester(newSemester);
+                str = "tạo học kì thành công";
+            }else
+            str = "đã có học kì này rồi" ;
+        }else{
+            str = "Nhập lỗi (Năm học 9 kí tự)" ;
+        }
+        Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+        alert1.setTitle("Học kì");
+        alert1.setContentText(str);
+        alert1.showAndWait();
+        SemesterList = FXCollections.observableArrayList(SemesterDAO.getALlSemesterList());
+        inputSearchSeme.setItems(SemesterList);
+        inputSearchSeme.setValue(MainSemester);
+    }
+
+
 // Tài Khoản giáo viên
     @FXML
     private TextField layIDtimkiemgiaovien;
@@ -439,7 +549,40 @@ public class GUI_teacher implements Initializable {
         teachersList = FXCollections.observableArrayList(TeacherDAO.getALlTeacherList());
         BangGV.setItems(teachersList);
     }
+//Trang lớp học
+    @FXML
+    private TextField laytimkiemlop;
+    @FXML
+    private TableView<Class> BangLophoc;
+    @FXML
+    private TableColumn<Class,String> STTLop_column;
+    @FXML
+    private TableColumn<Class,String> tenlop_column;
+    @FXML
+    private TableColumn<Class,Integer> Sosinhvien_column;
+    @FXML
+    private TableColumn<Class,Integer> Sosinhviennam_column;
+    @FXML
+    private TableColumn<Class,Integer> Sosinhviennu_column;
 
+
+    @FXML
+    private void tabLophoc(Event event) {
+    }
+
+    @FXML
+    private void xoalophocClick(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    private void ThemlophocClick(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    private void timkiemlopClick(ActionEvent actionEvent) {
+    }
+
+//Trang sinh viên
 
 
 
@@ -514,6 +657,7 @@ public class GUI_teacher implements Initializable {
 
 
     }
+
 
 
 }

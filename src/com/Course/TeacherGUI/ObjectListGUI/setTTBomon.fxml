@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="612.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Course.TeacherGUI.ObjectListGUI.setTTBomon">
+    <center>
+        <Pane prefHeight="419.0" prefWidth="548.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="Xacnhan" layoutX="263.0" layoutY="282.0" mnemonicParsing="false" onAction="#XacnhanOnAction" prefHeight="25.0" prefWidth="93.0" text="Xác Nhận" />
+                <GridPane layoutX="44.0" layoutY="64.0" prefHeight="182.0" prefWidth="532.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="111.6000244140625" minWidth="0.0" prefWidth="111.6000244140625" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="409.5999877929687" minWidth="10.0" prefWidth="378.40003662109376" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="224.0" minWidth="10.0" prefWidth="50.39996337890619" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="111.20001220703125" minWidth="0.0" prefWidth="0.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Label prefHeight="30.0" prefWidth="112.0" text="Mã Bộ Môn">
+                            <GridPane.margin>
+                                <Insets />
+                            </GridPane.margin>
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <Label prefHeight="33.0" prefWidth="112.0" text="Số tín chỉ" GridPane.rowIndex="2">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="TenMon" prefHeight="32.0" prefWidth="111.0" text="Tên Môn " GridPane.rowIndex="1">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="ID" GridPane.columnIndex="1">
+                            <GridPane.margin>
+                                <Insets left="20.0" right="20.0" />
+                            </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="Sotinchi" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                            <GridPane.margin>
+                                <Insets left="20.0" right="20.0" />
+                            </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="tenmon" layoutX="142.0" layoutY="60.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <GridPane.margin>
+                                <Insets left="20.0" right="20.0" />
+                            </GridPane.margin>
+                        </TextField>
+                    </children>
+                </GridPane>
+            </children>
+        </Pane>
+    </center>
+    <top>
+        <Pane prefHeight="102.0" prefWidth="610.0" style="-fx-background-color: #4ae7f0;" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fx:id="iconPage" fitHeight="87.0" fitWidth="104.0" layoutX="8.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../../../img/edit.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="149.0" layoutY="18.0" prefHeight="67.0" prefWidth="435.0" text="Sửa Thông Tin Môn học">
+                    <font>
+                        <Font name="System Bold" size="37.0" />
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+    </top>
+</BorderPane>

@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -236,42 +237,6 @@
                   </BorderPane>
                </content>
           </Tab>
-            <Tab onSelectionChanged="#tabMonhoc" text="Môn học">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #00fbff;">
-                     <children>
-                        <TableView fx:id="BangMonHoc" layoutX="22.0" layoutY="61.0" prefHeight="474.0" prefWidth="786.0">
-                           <columns>
-                              <TableColumn fx:id="Mamon_column" prefWidth="152.79998397827148" text="Mã Môn Học" />
-                              <TableColumn fx:id="tenmon_column" minWidth="0.0" prefWidth="532.8000335693359" text="Tên Môn học" />
-                              <TableColumn fx:id="Sotinchi_column" prefWidth="101.60009765625" text="Số tính chỉ" />
-                           </columns>
-                        </TableView>
-                        <Button fx:id="timkiemmamon" layoutX="543.0" layoutY="16.0" mnemonicParsing="false" onAction="#timkiemamonOnAction" prefHeight="25.0" prefWidth="112.0" text="Tìm kiếm" />
-                        <Label layoutX="22.0" layoutY="13.0" prefHeight="32.0" prefWidth="112.0" text="Nhập Mã Môn học :" />
-                        <TextField fx:id="laytimkiemmamon" layoutX="146.0" layoutY="17.0" prefHeight="26.0" prefWidth="377.0" />
-                        <Button layoutX="822.0" layoutY="504.0" mnemonicParsing="false" onAction="#xoamonOnAction" prefHeight="32.0" prefWidth="116.0" text="Xóa" fx:id="xoamon" />
-                        <Button fx:id="themmon" layoutX="822.0" layoutY="414.0" mnemonicParsing="false" onAction="#themmonOnAction" prefHeight="32.0" prefWidth="116.0" text="Thêm" />
-                        <Button fx:id="capnhatmon" layoutX="822.0" layoutY="458.0" mnemonicParsing="false" onAction="#capnhatmonOnAction" prefHeight="32.0" prefWidth="116.0" text="Cập Nhật" />
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
-          <Tab text="Đăng kí học phần">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
-          </Tab>
-            <Tab text="Học Kì">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
-            </Tab>
-            <Tab text="Mở Đăng kì Học Phần">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
-            </Tab>
             <Tab onSelectionChanged="#tabGiaovu" text="Tài Khoản Giáo Viên">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #00fbff;">
@@ -296,24 +261,175 @@
                      </children></AnchorPane>
               </content>
             </Tab>
-            <Tab text="Lớp Học">
+            <Tab onSelectionChanged="#tabMonhoc" text="Môn học">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #00fbff;">
                      <children>
-                        <TableView fx:id="BangMonHoc1" layoutX="22.0" layoutY="61.0" prefHeight="474.0" prefWidth="786.0">
+                        <TableView fx:id="BangMonHoc" layoutX="22.0" layoutY="61.0" prefHeight="474.0" prefWidth="786.0">
                            <columns>
-                              <TableColumn fx:id="Mamon_column1" prefWidth="80.80001449584961" text="STT" />
-                              <TableColumn fx:id="tenmon_column1" minWidth="0.0" prefWidth="224.00001525878906" text="Tên Lớp" />
-                              <TableColumn fx:id="Sotinchi_column1" prefWidth="193.5999755859375" text="Số Sinh Viên " />
-                              <TableColumn fx:id="Sotinchi_column11" prefWidth="131.20001220703125" text="Số Sinh Viên Nam" />
-                              <TableColumn fx:id="Sotinchi_column111" prefWidth="156.0" text="Số Sinh Viên Nữ" />
+                              <TableColumn fx:id="Mamon_column" prefWidth="152.79998397827148" text="Mã Môn Học" />
+                              <TableColumn fx:id="tenmon_column" minWidth="0.0" prefWidth="532.8000335693359" text="Tên Môn học" />
+                              <TableColumn fx:id="Sotinchi_column" prefWidth="101.60009765625" text="Số tính chỉ" />
                            </columns>
                         </TableView>
-                        <Button fx:id="timkiemmamon1" layoutX="543.0" layoutY="16.0" mnemonicParsing="false" onAction="#timkiemamonOnAction" prefHeight="25.0" prefWidth="112.0" text="Tìm kiếm" />
+                        <Button fx:id="timkiemmamon" layoutX="543.0" layoutY="16.0" mnemonicParsing="false" onAction="#timkiemamonOnAction" prefHeight="25.0" prefWidth="112.0" text="Tìm kiếm" />
+                        <Label layoutX="22.0" layoutY="13.0" prefHeight="32.0" prefWidth="112.0" text="Nhập Mã Môn học :" />
+                        <TextField fx:id="laytimkiemmamon" layoutX="146.0" layoutY="17.0" prefHeight="26.0" prefWidth="377.0" />
+                        <Button layoutX="822.0" layoutY="504.0" mnemonicParsing="false" onAction="#xoamonOnAction" prefHeight="32.0" prefWidth="116.0" text="Xóa" fx:id="xoamon" />
+                        <Button fx:id="themmon" layoutX="822.0" layoutY="414.0" mnemonicParsing="false" onAction="#themmonOnAction" prefHeight="32.0" prefWidth="116.0" text="Thêm" />
+                        <Button fx:id="capnhatmon" layoutX="822.0" layoutY="458.0" mnemonicParsing="false" onAction="#capnhatmonOnAction" prefHeight="32.0" prefWidth="116.0" text="Cập Nhật" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab onSelectionChanged="#tabHocki" text="Học Kì">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #00fbff;">
+                     <children>
+                        <Pane layoutX="324.0" layoutY="74.0" prefHeight="379.0" prefWidth="611.0" style="-fx-background-color: #eae60f;">
+                           <children>
+                              <Button fx:id="SetMainHK" layoutX="163.0" layoutY="318.0" mnemonicParsing="false" onAction="#SetMainHKonAction" prefHeight="36.0" prefWidth="119.0" text="Đặt học kì chính" />
+                              <Button fx:id="DeleteHK" layoutX="319.0" layoutY="318.0" mnemonicParsing="false" onAction="#DeleteHKonAction" prefHeight="36.0" prefWidth="119.0" text="Xóa Học Kì Này" />
+                              <Label alignment="CENTER" layoutX="222.0" layoutY="14.0" prefHeight="45.0" prefWidth="149.0" text="THÔNG TIN">
+                                 <font>
+                                    <Font name="System Bold" size="21.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="35.0" layoutY="104.0" prefHeight="31.0" prefWidth="90.0" text="Học Kì :" />
+                              <Label fx:id="TTLabelHK" layoutX="133.0" layoutY="104.0" prefHeight="31.0" prefWidth="147.0" text="Label">
+                                 <font>
+                                    <Font name="System Bold Italic" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="326.0" layoutY="104.0" prefHeight="31.0" prefWidth="90.0" text="Năm Học" />
+                              <Label fx:id="TTLabelNamhoc" layoutX="416.0" layoutY="104.0" prefHeight="31.0" prefWidth="156.0" text="Label">
+                                 <font>
+                                    <Font name="System Bold Italic" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="35.0" layoutY="174.0" prefHeight="31.0" prefWidth="90.0" text="Ngày Bắt Đầu :" />
+                              <Label fx:id="TTLabel_NgayBD" layoutX="135.0" layoutY="174.0" prefHeight="31.0" prefWidth="147.0" text="Label">
+                                 <font>
+                                    <Font name="System Bold Italic" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="326.0" layoutY="174.0" prefHeight="31.0" prefWidth="90.0" text="Ngày Kết Thúc" />
+                              <Label fx:id="TTLabel_NgayKT" layoutX="416.0" layoutY="174.0" prefHeight="31.0" prefWidth="156.0" text="Label">
+                                 <font>
+                                    <Font name="System Bold Italic" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <ChoiceBox fx:id="inputSearchSeme" layoutX="424.0" layoutY="29.0" prefHeight="26.0" prefWidth="394.0" />
+                        <Label layoutX="324.0" layoutY="27.0" prefHeight="28.0" prefWidth="100.0" text="Chọn Học Kì :">
+                           <font>
+                              <Font name="System Bold Italic" size="14.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="SearchSeButton" layoutX="826.0" layoutY="29.0" mnemonicParsing="false" onAction="#SearchSeButtononAction" prefHeight="26.0" prefWidth="102.0" text="Xem" />
+                        <Pane layoutX="14.0" layoutY="157.0" prefHeight="296.0" prefWidth="302.0">
+                           <children>
+                              <Button fx:id="TaoHK" layoutX="111.0" layoutY="257.0" mnemonicParsing="false" onAction="#TaoHKonAction" prefHeight="25.0" prefWidth="80.0" text="Tạo" />
+                              <Label layoutX="14.0" layoutY="35.0" prefHeight="25.0" prefWidth="62.0" text="Học Kì" />
+                              <Label layoutX="14.0" layoutY="85.0" prefHeight="25.0" prefWidth="62.0" text="Năm Học" />
+                              <Label layoutX="14.0" layoutY="138.0" prefHeight="25.0" prefWidth="81.0" text="Ngày Bắt Đầu" />
+                              <Label layoutX="14.0" layoutY="195.0" prefHeight="25.0" prefWidth="84.0" text="Ngày Kết Thúc" />
+                              <DatePicker fx:id="NgayBDHK" layoutX="104.0" layoutY="138.0" />
+                              <DatePicker fx:id="NgayKTHK" layoutX="104.0" layoutY="195.0" />
+                              <TextField fx:id="inputNamhoc" layoutX="104.0" layoutY="85.0" prefHeight="25.0" prefWidth="176.0" />
+                              <ChoiceBox fx:id="inputHK" layoutX="104.0" layoutY="35.0" prefHeight="25.0" prefWidth="176.0" />
+                           </children>
+                        </Pane>
+                        <Pane layoutX="16.0" layoutY="14.0" prefHeight="138.0" prefWidth="297.0" style="-fx-background-color: #FFFFFF;">
+                           <children>
+                              <Label alignment="CENTER" layoutX="92.0" layoutY="6.0" prefHeight="17.0" prefWidth="111.0" text="HỌC KÌ CHÍNH">
+                                 <font>
+                                    <Font name="System Bold Italic" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="14.0" layoutY="33.0" prefHeight="17.0" prefWidth="100.0" text="Học kì:" />
+                              <Label layoutX="139.0" layoutY="82.0" prefHeight="17.0" prefWidth="128.0" text="Ngày kết thúc:" />
+                              <Label fx:id="M_LabelHocKi" layoutX="14.0" layoutY="61.0" prefHeight="17.0" prefWidth="100.0" text="Label">
+                                 <font>
+                                    <Font name="System Bold Italic" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="M_LabelNgayKT" layoutX="139.0" layoutY="107.0" prefHeight="17.0" prefWidth="128.0" text="Label">
+                                 <font>
+                                    <Font name="System Bold Italic" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="14.0" layoutY="82.0" prefHeight="17.0" prefWidth="100.0" text="Ngày bắt đầu:" />
+                              <Label fx:id="M_LabelNgayBD" layoutX="14.0" layoutY="107.0" prefHeight="17.0" prefWidth="100.0" text="Label">
+                                 <font>
+                                    <Font name="System Bold Italic" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="M_LabelNamhoc" layoutX="139.0" layoutY="59.0" prefHeight="17.0" prefWidth="128.0" text="Label">
+                                 <font>
+                                    <Font name="System Bold Italic" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="139.0" layoutY="33.0" prefHeight="17.0" prefWidth="128.0" text="Năm học:" />
+                           </children>
+                        </Pane>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab onSelectionChanged="#tabLophoc" text="Lớp Học">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #00fbff;">
+                     <children>
+                        <TableView fx:id="BangLophoc" layoutX="22.0" layoutY="61.0" prefHeight="474.0" prefWidth="786.0">
+                           <columns>
+                              <TableColumn fx:id="STTLop_column" prefWidth="80.80001449584961" text="STT" />
+                              <TableColumn fx:id="tenlop_column" minWidth="0.0" prefWidth="224.00001525878906" text="Tên Lớp" />
+                              <TableColumn fx:id="Sosinhvien_column" prefWidth="193.5999755859375" text="Số Sinh Viên " />
+                              <TableColumn fx:id="Sosinhviennam_column" prefWidth="131.20001220703125" text="Số Sinh Viên Nam" />
+                              <TableColumn fx:id="Sosinhviennu_column" prefWidth="156.0" text="Số Sinh Viên Nữ" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="timkiemlop" layoutX="543.0" layoutY="16.0" mnemonicParsing="false" onAction="#timkiemlopClick" prefHeight="25.0" prefWidth="112.0" text="Tìm kiếm" />
                         <Label layoutX="22.0" layoutY="13.0" prefHeight="32.0" prefWidth="112.0" text="Nhập Mã Lớp học :" />
-                        <TextField fx:id="laytimkiemmamon1" layoutX="146.0" layoutY="17.0" prefHeight="26.0" prefWidth="377.0" />
-                        <Button layoutX="822.0" layoutY="504.0" mnemonicParsing="false" onAction="#xoamonOnAction" prefHeight="32.0" prefWidth="116.0" text="Xóa" fx:id="xoamon1" />
-                        <Button fx:id="themmon1" layoutX="822.0" layoutY="414.0" mnemonicParsing="false" onAction="#themmonOnAction" prefHeight="32.0" prefWidth="116.0" text="Thêm" />
+                        <TextField fx:id="laytimkiemlop" layoutX="146.0" layoutY="17.0" prefHeight="26.0" prefWidth="377.0" />
+                        <Button layoutX="822.0" layoutY="504.0" mnemonicParsing="false" onAction="#xoalophocClick" prefHeight="32.0" prefWidth="116.0" text="Xóa" fx:id="xoalophoc" />
+                        <Button fx:id="Themlophoc" layoutX="822.0" layoutY="452.0" mnemonicParsing="false" onAction="#ThemlophocClick" prefHeight="32.0" prefWidth="116.0" text="Thêm" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+          <Tab text="Đăng kí học phần">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+            <Tab text="Mở Đăng kì Học Phần">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab onSelectionChanged="#tabGiaovu" text="Sinh viên">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #00fbff;">
+                     <children>
+                        <TableView fx:id="BangGV1" layoutX="22.0" layoutY="61.0" prefHeight="474.0" prefWidth="786.0">
+                           <columns>
+                              <TableColumn fx:id="IDGV_column1" prefWidth="64.00002670288086" text="ID" />
+                              <TableColumn fx:id="HotenGV_column1" minWidth="0.0" prefWidth="180.80003356933594" text="Họ và tên" />
+                              <TableColumn fx:id="NgaysinhGV_column1" minWidth="0.0" prefWidth="84.79998779296875" text="Ngày sinh" />
+                              <TableColumn fx:id="GioitinhGV_column1" minWidth="8.79998779296875" prefWidth="61.5999755859375" text="Giới tính" />
+                              <TableColumn fx:id="SDTGV_coulumn1" prefWidth="119.99993896484375" text="SĐT" />
+                              <TableColumn fx:id="DiachiGV_column1" prefWidth="284.79998779296875" text="Địa chỉ" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="timkiemgiaovien1" layoutX="543.0" layoutY="16.0" mnemonicParsing="false" onAction="#TimKiemGVButton" prefHeight="25.0" prefWidth="112.0" text="Tìm kiếm" />
+                        <Label layoutX="22.0" layoutY="13.0" prefHeight="32.0" prefWidth="74.0" text="Nhập ID :" />
+                        <TextField fx:id="layIDtimkiemgiaovien1" layoutX="97.0" layoutY="17.0" prefHeight="26.0" prefWidth="426.0" />
+                        <Button layoutX="822.0" layoutY="504.0" mnemonicParsing="false" onAction="#XoaGVButton" prefHeight="32.0" prefWidth="116.0" text="Xóa" fx:id="xoagv1" />
+                        <Button fx:id="capnhatgv1" layoutX="822.0" layoutY="458.0" mnemonicParsing="false" onAction="#CapNhatGVButton" prefHeight="32.0" prefWidth="116.0" text="Cập Nhật" />
+                        <Button fx:id="themgv1" layoutX="822.0" layoutY="414.0" mnemonicParsing="false" onAction="#ThemGVButton" prefHeight="32.0" prefWidth="116.0" text="Thêm" />
+                        <Button fx:id="resetmkgv1" layoutX="822.0" layoutY="370.0" mnemonicParsing="false" onAction="#ResetGVButton" prefHeight="32.0" prefWidth="116.0" text="Reset Mật khẩu" />
                      </children>
                   </AnchorPane>
                </content>
@@ -344,7 +460,7 @@
                   <ColorAdjust />
                </effect>
             </ImageView>
-            <Label fx:id="LabelHK" alignment="CENTER" layoutX="736.0" layoutY="39.0" prefHeight="17.0" prefWidth="83.0" text="HK1" textAlignment="CENTER" textFill="#ece51f">
+            <Label fx:id="LabelHK" alignment="CENTER" layoutX="736.0" layoutY="39.0" prefHeight="17.0" prefWidth="83.0" text="HK1" textAlignment="CENTER" textFill="#c1d91a">
                <font>
                   <Font size="14.0" />
                </font>
