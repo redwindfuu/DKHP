@@ -21,4 +21,5 @@ module DKHP {
     opens com.Course.LoginAndSignup;
     opens com.Course.StudentGUI;
     opens com.Course.TeacherGUI;
+    opens com.Course.TeacherGUI.TeacherListGUI;
 }

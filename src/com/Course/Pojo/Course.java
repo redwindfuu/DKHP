@@ -43,6 +43,12 @@ public class Course implements Serializable {
         this.slot = slot;
     }
 
+    public boolean DKHP_forStudent(Course var){
+        return (this.getIdCourse().getTimestudy() == var.getIdCourse().getTimestudy())
+                && (this.getIdCourse().getDaystudy() == var.getIdCourse().getDaystudy());
+    }
+
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) return true;

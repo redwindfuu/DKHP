@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class Student implements Serializable {
 
-    private int keyStudent;
+    private Long keyStudent;
     private String passwordStu;
     private String idStu;
     private String nameStu;
@@ -55,11 +55,11 @@ public class Student implements Serializable {
 
     }
 
-    public int getKeyStudent() {
+    public Long getKeyStudent() {
         return keyStudent;
     }
 
-    public void setKeyStudent(int keyStudent) {
+    public void setKeyStudent(Long keyStudent) {
         this.keyStudent = keyStudent;
     }
 

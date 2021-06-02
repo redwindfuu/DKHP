@@ -5,9 +5,12 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.ColorAdjust?>
@@ -197,24 +200,6 @@
                                     <Label prefHeight="18.0" prefWidth="109.0" text="Nhập Mật Khẩu cũ :" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <Label text="Nhập Mật khẩu mới:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                     <Label text="Nhập lại Mật Khẩu mới:" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField fx:id="changePass_old" style="-fx-background-color: #FFFFFF;" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                       <opaqueInsets>
-                                          <Insets left="10.0" right="10.0" />
-                                       </opaqueInsets>
-                                       <GridPane.margin>
-                                          <Insets left="10.0" right="10.0" />
-                                       </GridPane.margin>
-                                    </TextField>
-                                    <TextField fx:id="changePass_new" style="-fx-background-color: #FFFFFF;" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                       <GridPane.margin>
-                                          <Insets left="10.0" right="10.0" />
-                                       </GridPane.margin>
-                                    </TextField>
-                                    <TextField fx:id="changePass_reNew" style="-fx-background-color: #FFFFFF;" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                       <GridPane.margin>
-                                          <Insets left="10.0" right="10.0" />
-                                       </GridPane.margin>
-                                    </TextField>
                                     <Label alignment="CENTER" prefHeight="105.0" prefWidth="406.0" text="Đổi Mật Khẩu" textAlignment="CENTER" GridPane.columnIndex="2">
                                        <font>
                                           <Font size="55.0" />
@@ -228,6 +213,21 @@
                                           <Insets left="125.0" right="125.0" />
                                        </GridPane.margin>
                                     </Button>
+                                    <PasswordField fx:id="changePass_old" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </PasswordField>
+                                    <PasswordField fx:id="changePass_new" layoutX="200.0" layoutY="204.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </PasswordField>
+                                    <PasswordField fx:id="changePass_reNew" layoutX="200.0" layoutY="204.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </PasswordField>
                                  </children>
                               </GridPane>
                            </children>
@@ -242,9 +242,25 @@
                </content>
             </Tab>
             <Tab text="Môn học">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #00fbff;">
+                     <children>
+                        <TableView fx:id="BangMonHoc" layoutX="22.0" layoutY="61.0" prefHeight="474.0" prefWidth="786.0">
+                           <columns>
+                              <TableColumn fx:id="Mamon_column" prefWidth="152.79998397827148" text="Mã Môn Học" />
+                              <TableColumn fx:id="tenmon_column" minWidth="0.0" prefWidth="532.8000335693359" text="Tên Môn học" />
+                              <TableColumn fx:id="Sotinchi_column" prefWidth="101.60009765625" text="Số tính chỉ" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="timkiemmamon" layoutX="543.0" layoutY="16.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="Tìm kiếm" />
+                        <Label layoutX="22.0" layoutY="13.0" prefHeight="32.0" prefWidth="112.0" text="Nhập Mã Môn học :" />
+                        <TextField fx:id="laytimkiemmamon" layoutX="146.0" layoutY="17.0" prefHeight="26.0" prefWidth="377.0" />
+                        <Button layoutX="822.0" layoutY="504.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="116.0" text="Xóa" fx:id="xoamon" />
+                        <Button fx:id="capnhatmon" layoutX="822.0" layoutY="458.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="116.0" text="Cập Nhật" />
+                        <Button fx:id="themmon" layoutX="822.0" layoutY="414.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="116.0" text="Thêm" />
+                     </children>
+                  </AnchorPane>
+               </content>
             </Tab>
           <Tab text="Đăng kí học phần">
             <content>
@@ -256,14 +272,33 @@
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>
             </Tab>
-            <Tab text="Mở Đăng kí Học Phần">
+            <Tab text="Mở Đăng kì Học Phần">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>
             </Tab>
-            <Tab text="Tài Khoản Giáo Viên">
+            <Tab onSelectionChanged="#tabGiaovu" text="Tài Khoản Giáo Viên">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #00fbff;">
+                     <children>
+                        <TableView fx:id="BangGV" layoutX="22.0" layoutY="61.0" prefHeight="474.0" prefWidth="786.0">
+                          <columns>
+                            <TableColumn fx:id="IDGV_column" prefWidth="64.00002670288086" text="ID" />
+                            <TableColumn fx:id="HotenGV_column" minWidth="0.0" prefWidth="180.80003356933594" text="Họ và tên" />
+                              <TableColumn fx:id="NgaysinhGV_column" minWidth="0.0" prefWidth="84.79998779296875" text="Ngày sinh" />
+                              <TableColumn fx:id="GioitinhGV_column" minWidth="8.79998779296875" prefWidth="61.5999755859375" text="Giới tính" />
+                              <TableColumn fx:id="SDTGV_coulumn" prefWidth="119.99993896484375" text="SĐT" />
+                              <TableColumn fx:id="DiachiGV_column" prefWidth="284.79998779296875" text="Địa chỉ" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="timkiemgiaovien" layoutX="543.0" layoutY="16.0" mnemonicParsing="false" onAction="#TimKiemGVButton" prefHeight="25.0" prefWidth="112.0" text="Tìm kiếm" />
+                        <Label layoutX="22.0" layoutY="13.0" prefHeight="32.0" prefWidth="74.0" text="Nhập ID :" />
+                        <TextField fx:id="layIDtimkiemgiaovien" layoutX="97.0" layoutY="17.0" prefHeight="26.0" prefWidth="426.0" />
+                        <Button layoutX="822.0" layoutY="504.0" mnemonicParsing="false" onAction="#XoaGVButton" prefHeight="32.0" prefWidth="116.0" text="Xóa" fx:id="xoagv" />
+                        <Button fx:id="capnhatgv" layoutX="822.0" layoutY="458.0" mnemonicParsing="false" onAction="#CapNhatGVButton" prefHeight="32.0" prefWidth="116.0" text="Cập Nhật" />
+                        <Button fx:id="themgv" layoutX="822.0" layoutY="414.0" mnemonicParsing="false" onAction="#ThemGVButton" prefHeight="32.0" prefWidth="116.0" text="Thêm" />
+                        <Button fx:id="resetmkgv" layoutX="822.0" layoutY="370.0" mnemonicParsing="false" onAction="#ResetGVButton" prefHeight="32.0" prefWidth="116.0" text="Reset Mật khẩu" />
+                     </children></AnchorPane>
               </content>
             </Tab>
         </tabs>
@@ -292,6 +327,16 @@
                   <ColorAdjust />
                </effect>
             </ImageView>
+            <Label fx:id="LabelHK" alignment="CENTER" layoutX="736.0" layoutY="39.0" prefHeight="17.0" prefWidth="83.0" text="HK1" textAlignment="CENTER" textFill="#ece51f">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="LabelNamhoc" alignment="CENTER" layoutX="719.0" layoutY="62.0" prefHeight="17.0" prefWidth="118.0" text="2020-2021" textAlignment="CENTER" textFill="#ece51f">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </top>

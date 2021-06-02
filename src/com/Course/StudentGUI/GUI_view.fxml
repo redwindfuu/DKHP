@@ -12,7 +12,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Course.StudentGUI.GUI_view">
    <center>
-      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: 0x43E9E4;" BorderPane.alignment="CENTER">
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <GridPane layoutX="33.0" layoutY="29.0" prefHeight="243.0" prefWidth="549.0">
               <columnConstraints>

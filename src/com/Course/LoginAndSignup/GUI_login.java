@@ -43,7 +43,7 @@ public class GUI_login implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Accounttypebox.setValue("Sinh viên");
+        Accounttypebox.setValue("Giáo vụ");
         Accounttypebox.setItems(AccounttypeList);
         progress.setVisible(false);
     }

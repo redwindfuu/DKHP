@@ -7,27 +7,27 @@
     <class name="com.Course.Pojo.Student" table="student" schema="qlhp">
         <id name="keyStudent">
             <column name="key_Student" sql-type="int"/>
-            <generator class="identity"/>
+            <generator class="native"/>
         </id>
         <property name="passwordStu">
             <column name="password_stu" sql-type="varchar(8)" length="8" not-null="true"/>
         </property>
-        <property name="idStu">
+        <property name="idStu" update="true">
             <column name="ID_Stu" unique="true" sql-type="varchar(8)" length="8"/>
         </property>
-        <property name="nameStu">
+        <property name="nameStu" update="true">
             <column name="name_stu" sql-type="varchar(20)" length="20" not-null="true"/>
         </property>
-        <property name="sex">
+        <property name="sex" update="true">
             <column name="sex" sql-type="varchar(3)" length="3" not-null="true"/>
         </property>
-        <property name="birthday">
+        <property name="birthday" update="true">
             <column name="birthday" sql-type="date" not-null="true"/>
         </property>
-        <property name="numberPhone">
+        <property name="numberPhone" update="true">
             <column name="numberPhone" sql-type="varchar(10)" length="10" not-null="true"/>
         </property>
-        <property name="address">
+        <property name="address" update="true">
             <column name="Address" sql-type="varchar(50)" length="50" not-null="true"/>
         </property>
 
@@ -38,7 +38,7 @@
             <key foreign-key="com.Course.Pojo.Student">
                 <column name="key_student" sql-type="int" not-null="true" />
             </key>
-            <many-to-many entity-name="com.Course.Pojo.Course">
+            <many-to-many entity-name="com.Course.Pojo.Course" >
                 <column name="ID_ob"  sql-type="varchar(10)" length="10" />
                 <column name="seme_ID" sql-type="varchar(3)" length="3" />
                 <column name="yearSeme" sql-type="varchar(9)" length="9"/>

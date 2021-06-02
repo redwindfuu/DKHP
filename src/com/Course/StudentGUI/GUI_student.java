@@ -30,6 +30,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -166,16 +167,17 @@ public class GUI_student implements Initializable {
     private Button buttonUpdate;
 
     public void buttonUpdateOnAction(ActionEvent e){
+
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Xác nhận");
-        alert.setContentText("Bạn có muốn cập nhật mật khẩu không ?");
+        alert.setContentText("Bạn có muốn cập nhật thông tin không ?");
         Optional<ButtonType> option = alert.showAndWait();
         if (option.get() == ButtonType.OK){
-        User.setNameStu(ReputName.getText());
-        User.setAddress(reputAddress.getText());
-        User.setNumberPhone(reputNumberPhone.getText());
+        User.setNameStu(ReputName.getText().trim());
+        User.setAddress(reputAddress.getText().trim());
+        User.setNumberPhone(reputNumberPhone.getText().trim());
         User.setBirthday(Date.valueOf(reputBirth.getValue()));
-        User.setSex(Listgender.getSelectedToggle().toString());
+        User.setSex(((RadioButton)Listgender.getSelectedToggle()).getText());
         StudentDAO.updateStudent(User);
         }
         setUsers(User);
@@ -191,35 +193,40 @@ public class GUI_student implements Initializable {
 
 // Đổi mật khẩu
     @FXML
-    private TextField changePass_old;
+    private PasswordField changePass_old;
     @FXML
-    private TextField changePass_new;
+    private PasswordField changePass_new;
     @FXML
-    private TextField changePass_reNew;
+    private PasswordField changePass_reNew;
     @FXML
     private Button buttonRePass;
 
     public void buttonRePassOnAction(ActionEvent e){
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Xác nhận");
+        alert.setContentText("Bạn có muốn cập nhật mật khẩu không ?");
+        Optional<ButtonType> option = alert.showAndWait();
+        if((option.get() == ButtonType.OK)){
         if(User.isConnectPass(changePass_old.getText())){
             if(changePass_new.getText().equals(changePass_reNew.getText())){
                 User.setPasswordStu(changePass_new.getText());
                 StudentDAO.updateStudent(User);
-                Alert alert = new Alert(AlertType.CONFIRMATION);
-                alert.setTitle("Đổi Mật Khẩu");
-                alert.setContentText("Đổi thành công");
-                alert.showAndWait();
+                Alert alert1 = new Alert(AlertType.CONFIRMATION);
+                alert1.setTitle("Đổi Mật Khẩu");
+                alert1.setContentText("Đổi thành công");
+                alert1.showAndWait();
             }else {
-                Alert alert = new Alert(AlertType.CONFIRMATION);
+                Alert alert1 = new Alert(AlertType.CONFIRMATION);
                 alert.setTitle("Đổi Mật Khẩu");
-                alert.setContentText("Đổi thất bại");
-                alert.showAndWait();
+                alert1.setContentText("Đổi thất bại");
+                alert1.showAndWait();
             }
         }else {
-            Alert alert = new Alert(AlertType.CONFIRMATION);
-            alert.setTitle("Đổi Mật Khẩu");
-            alert.setContentText("Đổi thất bại");
-            alert.showAndWait();
-        }
+            Alert alert2 = new Alert(AlertType.CONFIRMATION);
+            alert2.setTitle("Đổi Mật Khẩu");
+            alert2.setContentText("Đổi thất bại");
+            alert2.showAndWait();
+        }}
     }
 // Đăng kí học Phần
 
@@ -302,18 +309,48 @@ public class GUI_student implements Initializable {
 
 
     public void capnhaOnAction(ActionEvent e){
+
+        Date date = Date.valueOf(LocalDate.now());
+        System.out.println(date.toString());
         for (viewCourse h: forStudentList) {
             if(h.getSelecte().isSelected()){
-                User.getCourses().remove(h.getHocphan());
-                System.out.println(h.getHocphan().getIdCourse().getIdOb().getNameOb());
-                StudentDAO.updateStudent(User);
+                if(date.before(h.getThoigiandong())) {
+                    User.getCourses().remove(h.getHocphan()); // thêm điều kiện hủy
+                    System.out.println(h.getHocphan().getIdCourse().getIdOb().getNameOb());
+                    StudentDAO.updateStudent(User);
+                }else{
+                    Alert alert = new Alert(AlertType.CONFIRMATION);
+                    alert.setTitle("Chỉnh sửa");
+                    alert.setContentText("Chỉnh sửa học phần thất bại, đóng thời gian đăng kí");
+                    alert.showAndWait();
+                }
             }
         }
+
         for (viewCourse h: forCourseList) {
             if(h.getSelecte().isSelected()){
-                if(User.getCourses().size() + 1 <8){
-                User.getCourses().add(h.getHocphan());
-                StudentDAO.updateStudent(User);
+                int x = 0 ;
+                if(User.getCourses().size() + 1 <8 ){// them điều kiện đăng kí
+                    if(date.after(h.getThoigianmo())&& date.before(h.getThoigiandong()))
+                    {
+                        for (Course i : User.getCourses()) {
+                            if(i.DKHP_forStudent(h.getHocphan())) x = 1;
+                        }
+                        if(x==0){
+                        User.getCourses().add(h.getHocphan());
+                        StudentDAO.updateStudent(User);
+                        }else{
+                            Alert alert = new Alert(AlertType.CONFIRMATION);
+                            alert.setTitle("Chỉnh sửa");
+                            alert.setContentText("trùng giờ môn học");
+                            alert.showAndWait();
+                        }
+                    }else {
+                        Alert alert = new Alert(AlertType.CONFIRMATION);
+                        alert.setTitle("Chỉnh sửa");
+                        alert.setContentText("Chỉnh sửa học phần thất bại, đóng thời gian đăng kí");
+                        alert.showAndWait();
+                    }
                 }else{
                     Alert alert = new Alert(AlertType.CONFIRMATION);
                     alert.setTitle("Chỉnh sửa");
@@ -424,8 +461,20 @@ public class GUI_student implements Initializable {
     }
 
 
+    @FXML
+    private void ChangetabDKHP(Event event) {
+        forStudentList.clear();
+        forCourseList.clear();
+        for (Course h: User.getCourses()) {
+            System.out.println(h.toString());
+            forStudentList.add(new viewCourse(h));
+        }
+        for (Course h: CourseDAO.getALlCourseList()) {
+            if(!User.getCourses().contains(h))
+                forCourseList.add(new viewCourse(h));
+        }
 
-
-
-
+        hocphanmo.setItems(forCourseList);
+        Userhocphan.setItems(forStudentList);
+    }
 }

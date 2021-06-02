@@ -88,7 +88,7 @@ public class StudentDAO {
         Transaction transaction = null;
         try{
             transaction =session.beginTransaction();
-            session.update(st);
+            session.merge(st);
             transaction.commit();
         }catch (HibernateException ex){
             ex.printStackTrace();
