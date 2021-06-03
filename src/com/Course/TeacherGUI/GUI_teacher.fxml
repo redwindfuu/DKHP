@@ -381,20 +381,72 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #00fbff;">
                      <children>
-                        <TableView fx:id="BangLophoc" layoutX="22.0" layoutY="61.0" prefHeight="474.0" prefWidth="786.0">
+                        <TableView fx:id="BangLophoc" layoutX="22.0" layoutY="61.0" prefHeight="474.0" prefWidth="666.0">
                            <columns>
                               <TableColumn fx:id="STTLop_column" prefWidth="80.80001449584961" text="STT" />
-                              <TableColumn fx:id="tenlop_column" minWidth="0.0" prefWidth="224.00001525878906" text="Tên Lớp" />
-                              <TableColumn fx:id="Sosinhvien_column" prefWidth="193.5999755859375" text="Số Sinh Viên " />
-                              <TableColumn fx:id="Sosinhviennam_column" prefWidth="131.20001220703125" text="Số Sinh Viên Nam" />
-                              <TableColumn fx:id="Sosinhviennu_column" prefWidth="156.0" text="Số Sinh Viên Nữ" />
+                              <TableColumn fx:id="tenlop_column" minWidth="0.0" prefWidth="176.8000030517578" text="Tên Lớp" />
+                              <TableColumn fx:id="Sosinhvien_column" prefWidth="119.20001220703125" text="Số Sinh Viên " />
+                              <TableColumn fx:id="Sosinhviennam_column" prefWidth="123.20001220703125" text="Số Sinh Viên Nam" />
+                              <TableColumn fx:id="Sosinhviennu_column" prefWidth="159.2000732421875" text="Số Sinh Viên Nữ" />
                            </columns>
                         </TableView>
                         <Button fx:id="timkiemlop" layoutX="543.0" layoutY="16.0" mnemonicParsing="false" onAction="#timkiemlopClick" prefHeight="25.0" prefWidth="112.0" text="Tìm kiếm" />
                         <Label layoutX="22.0" layoutY="13.0" prefHeight="32.0" prefWidth="112.0" text="Nhập Mã Lớp học :" />
                         <TextField fx:id="laytimkiemlop" layoutX="146.0" layoutY="17.0" prefHeight="26.0" prefWidth="377.0" />
-                        <Button layoutX="822.0" layoutY="504.0" mnemonicParsing="false" onAction="#xoalophocClick" prefHeight="32.0" prefWidth="116.0" text="Xóa" fx:id="xoalophoc" />
-                        <Button fx:id="Themlophoc" layoutX="822.0" layoutY="452.0" mnemonicParsing="false" onAction="#ThemlophocClick" prefHeight="32.0" prefWidth="116.0" text="Thêm" />
+                        <Button layoutX="746.0" layoutY="495.0" mnemonicParsing="false" onAction="#xoalophocClick" prefHeight="32.0" prefWidth="140.0" text="Xóa" fx:id="xoalophoc" />
+                        <Pane layoutX="700.0" layoutY="61.0" prefHeight="217.0" prefWidth="231.0" style="-fx-background-color: #FFFFFF;">
+                           <children>
+                              <Button fx:id="Themlophoc" layoutX="62.0" layoutY="153.0" mnemonicParsing="false" onAction="#ThemlophocClick" prefHeight="32.0" prefWidth="116.0" text="Thêm" />
+                              <TextField fx:id="InputNameClass" layoutX="42.0" layoutY="108.0" />
+                              <Label layoutX="42.0" layoutY="77.0" prefHeight="25.0" prefWidth="78.0" text="Tên Lớp:">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="28.0" layoutY="14.0" prefHeight="50.0" prefWidth="177.0" text="Thêm Lớp Sinh hoạt">
+                                 <font>
+                                    <Font name="System Bold Italic" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="700.0" layoutY="298.0" prefHeight="165.0" prefWidth="231.0" style="-fx-background-color: #FFFFFF;">
+                           <children>
+                              <TextField fx:id="InputIDSV_Class" layoutX="41.0" layoutY="70.0" />
+                              <Label layoutX="45.0" layoutY="45.0" prefHeight="25.0" prefWidth="124.0" text="Mã số Sinh viên:">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Button layoutX="45.0" layoutY="111.0" mnemonicParsing="false" onAction="#addSVvaolop" prefHeight="32.0" prefWidth="141.0" text="Thêm sinh viên vào lớp" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab onSelectionChanged="#tabSinhvien" text="Sinh viên">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #00fbff;">
+                     <children>
+                        <TableView fx:id="BangSV" layoutX="22.0" layoutY="61.0" prefHeight="474.0" prefWidth="786.0">
+                           <columns>
+                              <TableColumn fx:id="IDSV_column" prefWidth="64.00002670288086" text="ID" />
+                              <TableColumn fx:id="HotenSV_column" minWidth="0.0" prefWidth="180.80003356933594" text="Họ và tên" />
+                              <TableColumn fx:id="NgaysinhSV_column" minWidth="0.0" prefWidth="84.79998779296875" text="Ngày sinh" />
+                              <TableColumn fx:id="GioitinhSV_column" minWidth="8.79998779296875" prefWidth="61.5999755859375" text="Giới tính" />
+                              <TableColumn fx:id="SDTSV_coulumn" prefWidth="119.99993896484375" text="SĐT" />
+                              <TableColumn fx:id="DiachiSV_column" prefWidth="284.79998779296875" text="Địa chỉ" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="timkiemsv" layoutX="543.0" layoutY="16.0" mnemonicParsing="false" onAction="#TimKiemSVButton" prefHeight="25.0" prefWidth="112.0" text="Tìm kiếm" />
+                        <Label layoutX="22.0" layoutY="13.0" prefHeight="32.0" prefWidth="74.0" text="Nhập ID :" />
+                        <TextField fx:id="layIDtimkiemsv" layoutX="97.0" layoutY="17.0" prefHeight="26.0" prefWidth="426.0" />
+                        <Button layoutX="822.0" layoutY="504.0" mnemonicParsing="false" onAction="#XoaSVButton" prefHeight="32.0" prefWidth="116.0" text="Xóa" fx:id="xoasv" />
+                        <Button fx:id="capnhatsv" layoutX="822.0" layoutY="458.0" mnemonicParsing="false" onAction="#CapNhatSVButton" prefHeight="32.0" prefWidth="116.0" text="Cập Nhật" />
+                        <Button fx:id="themsv" layoutX="822.0" layoutY="414.0" mnemonicParsing="false" onAction="#ThemSVButton" prefHeight="32.0" prefWidth="116.0" text="Thêm" />
+                        <Button fx:id="resetmksv" layoutX="822.0" layoutY="370.0" mnemonicParsing="false" onAction="#ResetSVButton" prefHeight="32.0" prefWidth="116.0" text="Reset Mật khẩu" />
+                        <Button layoutX="822.0" layoutY="326.0" mnemonicParsing="false" onAction="#seenHocphanOnAcion" prefHeight="33.0" prefWidth="116.0" text="Học Phần" />
                      </children>
                   </AnchorPane>
                </content>
@@ -408,31 +460,6 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>
-            </Tab>
-            <Tab onSelectionChanged="#tabGiaovu" text="Sinh viên">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #00fbff;">
-                     <children>
-                        <TableView fx:id="BangGV1" layoutX="22.0" layoutY="61.0" prefHeight="474.0" prefWidth="786.0">
-                           <columns>
-                              <TableColumn fx:id="IDGV_column1" prefWidth="64.00002670288086" text="ID" />
-                              <TableColumn fx:id="HotenGV_column1" minWidth="0.0" prefWidth="180.80003356933594" text="Họ và tên" />
-                              <TableColumn fx:id="NgaysinhGV_column1" minWidth="0.0" prefWidth="84.79998779296875" text="Ngày sinh" />
-                              <TableColumn fx:id="GioitinhGV_column1" minWidth="8.79998779296875" prefWidth="61.5999755859375" text="Giới tính" />
-                              <TableColumn fx:id="SDTGV_coulumn1" prefWidth="119.99993896484375" text="SĐT" />
-                              <TableColumn fx:id="DiachiGV_column1" prefWidth="284.79998779296875" text="Địa chỉ" />
-                           </columns>
-                        </TableView>
-                        <Button fx:id="timkiemgiaovien1" layoutX="543.0" layoutY="16.0" mnemonicParsing="false" onAction="#TimKiemGVButton" prefHeight="25.0" prefWidth="112.0" text="Tìm kiếm" />
-                        <Label layoutX="22.0" layoutY="13.0" prefHeight="32.0" prefWidth="74.0" text="Nhập ID :" />
-                        <TextField fx:id="layIDtimkiemgiaovien1" layoutX="97.0" layoutY="17.0" prefHeight="26.0" prefWidth="426.0" />
-                        <Button layoutX="822.0" layoutY="504.0" mnemonicParsing="false" onAction="#XoaGVButton" prefHeight="32.0" prefWidth="116.0" text="Xóa" fx:id="xoagv1" />
-                        <Button fx:id="capnhatgv1" layoutX="822.0" layoutY="458.0" mnemonicParsing="false" onAction="#CapNhatGVButton" prefHeight="32.0" prefWidth="116.0" text="Cập Nhật" />
-                        <Button fx:id="themgv1" layoutX="822.0" layoutY="414.0" mnemonicParsing="false" onAction="#ThemGVButton" prefHeight="32.0" prefWidth="116.0" text="Thêm" />
-                        <Button fx:id="resetmkgv1" layoutX="822.0" layoutY="370.0" mnemonicParsing="false" onAction="#ResetGVButton" prefHeight="32.0" prefWidth="116.0" text="Reset Mật khẩu" />
-                     </children>
-                  </AnchorPane>
-               </content>
             </Tab>
         </tabs>
       </TabPane>

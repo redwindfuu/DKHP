@@ -9,7 +9,15 @@ public class ClaSs implements Serializable {
     private int idClss;
     private String nameClass;
 
+    public ClaSs(String nameClass) {
+        this.nameClass = nameClass;
+    }
+
     private Set<Student> students = new HashSet<Student>(0)  ;
+
+    public ClaSs() {
+
+    }
 
     public int totalStudent(){
         return students.size();

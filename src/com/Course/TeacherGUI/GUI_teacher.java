@@ -1,17 +1,11 @@
 package com.Course.TeacherGUI;
 
-import com.Course.DAO.ObjectDAO;
-import com.Course.DAO.SemesterDAO;
-import com.Course.DAO.StudentDAO;
-import com.Course.DAO.TeacherDAO;
+import com.Course.DAO.*;
+import com.Course.Pojo.*;
 import com.Course.Pojo.Object;
-import com.Course.Pojo.Semester;
-import com.Course.Pojo.SemesterPK;
-import com.Course.Pojo.Teacher;
-import com.Course.StudentGUI.GUI_student;
+import com.Course.TeacherGUI.ClassListGUI.ClassList_info;
 import com.Course.TeacherGUI.ObjectListGUI.setTTBomon;
 import com.Course.TeacherGUI.TeacherListGUI.setTTGV;
-import javafx.beans.value.ObservableListValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,14 +17,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -553,37 +545,232 @@ public class GUI_teacher implements Initializable {
     @FXML
     private TextField laytimkiemlop;
     @FXML
-    private TableView<Class> BangLophoc;
+    private TableView<ClassList_info> BangLophoc;
     @FXML
-    private TableColumn<Class,String> STTLop_column;
+    private TableColumn<ClassList_info,String> STTLop_column;
     @FXML
-    private TableColumn<Class,String> tenlop_column;
+    private TableColumn<ClassList_info,String> tenlop_column;
     @FXML
-    private TableColumn<Class,Integer> Sosinhvien_column;
+    private TableColumn<ClassList_info,Integer> Sosinhvien_column;
     @FXML
-    private TableColumn<Class,Integer> Sosinhviennam_column;
+    private TableColumn<ClassList_info,Integer> Sosinhviennam_column;
     @FXML
-    private TableColumn<Class,Integer> Sosinhviennu_column;
-
-
+    private TableColumn<ClassList_info,Integer> Sosinhviennu_column;
+    @FXML
+    private TextField InputNameClass;
+    private ObservableList<ClaSs> ClassList ;
+    @FXML
+    private TextField InputIDSV_Class;
+    public ObservableList<ClassList_info> getListClass()
+    {
+        ClassList = FXCollections.observableArrayList(ClaSsDAO.getALlCLassList());
+        ObservableList<ClassList_info> f = FXCollections.observableArrayList();
+        for (ClaSs i : ClassList){
+            f.add(new ClassList_info(i));
+        }
+        return f;
+    }
     @FXML
     private void tabLophoc(Event event) {
-    }
 
+        STTLop_column.setCellValueFactory(new PropertyValueFactory<ClassList_info,String>("idClass"));
+        tenlop_column.setCellValueFactory(new PropertyValueFactory<ClassList_info,String>("nameClass"));
+        Sosinhvien_column.setCellValueFactory(new PropertyValueFactory<ClassList_info,Integer>("TongSV"));
+        Sosinhviennam_column.setCellValueFactory(new PropertyValueFactory<ClassList_info,Integer>("SVnam"));
+        Sosinhviennu_column.setCellValueFactory(new PropertyValueFactory<ClassList_info,Integer>("SVnu"));
+        ObservableList<ClassList_info> lst = getListClass();
+        BangLophoc.setItems(lst);
+    }
+    @FXML
+    private void addSVvaolop(ActionEvent actionEvent) {
+        ClassList_info tmp = BangLophoc.getSelectionModel().getSelectedItem();
+        String idStu =  InputIDSV_Class.getText();
+        if(tmp != null && !idStu.isEmpty()){
+            Student student = StudentDAO.getStudent(idStu);
+            if(student != null){
+            ClaSs h = tmp.getThisClass();
+            student.setIdClass(h);
+            StudentDAO.updateStudent(student);
+            }
+        }
+        BangLophoc.setItems(getListClass());
+    }
     @FXML
     private void xoalophocClick(ActionEvent actionEvent) {
+        ClassList_info tmp = BangLophoc.getSelectionModel().getSelectedItem();
+        String str ="";
+        if(tmp != null){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Xác nhận");
+            alert.setContentText("Bạn có muốn xóa Lớp học này không");
+            Optional<ButtonType> option = alert.showAndWait();
+            if (option.get() == ButtonType.OK) {
+                ClaSs cls = tmp.getThisClass();
+                ClaSsDAO.deleteClaSs(cls.getNameClass());
+                str =" thêm sinh viên vào lớp "+cls.getNameClass()+" thành công";
+            }else{
+                str =" thêm sinh viên vào lớp thất bại";
+            }
+        }else {
+            str =" thêm sinh viên vào lớp thất bại";
+        }
+        Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+        alert1.setTitle("Thêm lớp học");
+        alert1.setContentText(str);
+        alert1.showAndWait();
+        BangLophoc.setItems(getListClass());
     }
-
     @FXML
     private void ThemlophocClick(ActionEvent actionEvent) {
+        String result = InputNameClass.getText();
+        String msg ="";
+        if(ClaSsDAO.getClaSs(result) == null){
+            ClaSs newClss = new ClaSs(result);
+            ClaSsDAO.addClaSs(newClss);
+            msg = "thêm thành công ";
+        }else{
+            msg =" thêm thất bại";
+        }
+        Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+        alert1.setTitle("Thêm lớp học");
+        alert1.setContentText(msg);
+        alert1.showAndWait();
+        BangLophoc.setItems(getListClass());
     }
-
     @FXML
     private void timkiemlopClick(ActionEvent actionEvent) {
+        String result = laytimkiemlop.getText();
+        ObservableList<ClassList_info> lst = getListClass();
+        ObservableList<ClassList_info> rulstlst = FXCollections.observableArrayList();
+        if(!result.trim().isEmpty()){
+            for (ClassList_info i: lst) {
+                if(i.getNameClass().equals(result)){
+                    rulstlst.add(i);
+                    break;
+                }
+
+            }
+            BangLophoc.setItems(rulstlst);
+        }else{
+            BangLophoc.setItems(lst);
+        }
     }
-
 //Trang sinh viên
+@FXML
+    private TextField layIDtimkiemsv;
+    @FXML
+    private Button timkiemsv;
+    @FXML
+    private Button resetmksv;
+    @FXML
+    private Button themsv;
+    @FXML
+    private Button capnhatsv;
+    @FXML
+    private Button xoasv;
+    @FXML
+    private TableView<Student>  BangSV;
+    @FXML
+    private TableColumn<Student,String> IDSV_column;
+    @FXML
+    private TableColumn<Student,String> HotenSV_column;
+    @FXML
+    private TableColumn<Student,String> GioitinhSV_column;
+    @FXML
+    private TableColumn<Student,Date> NgaysinhSV_column;
+    @FXML
+    private TableColumn<Student,String> SDTSV_coulumn;
+    @FXML
+    private TableColumn<Student,String> DiachiSV_column;
+    private ObservableList<Student> studentList;
 
+    @FXML
+    private void seenHocphanOnAcion(ActionEvent actionEvent) {
+
+    }
+    public void TimKiemSVButton(ActionEvent e){
+        String result = layIDtimkiemgiaovien.getText();
+        ObservableList<Teacher> resultList = FXCollections.observableArrayList();
+        Teacher h = TeacherDAO.getTeacher(result);
+        if(h != null){
+            resultList.add(h);
+        }
+        BangGV.setItems(resultList);
+        if(result.trim() == ""){
+            BangGV.setItems(teachersList);
+        }
+    }
+    public void ResetSVButton(ActionEvent e){
+        String str =null;
+        Teacher result = BangGV.getSelectionModel().getSelectedItem();
+        if(result != null){
+            result.setPasswordTea(result.getIdTea());
+            TeacherDAO.updateTeacher(result);
+            str ="Reset thành công";
+        }else {
+            str ="Reset thất bại";
+        }
+        Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+        alert1.setTitle("Reset mật khẩu khoản giáo vụ");
+        alert1.setContentText(str);
+        alert1.showAndWait();
+        teachersList = FXCollections.observableArrayList(TeacherDAO.getALlTeacherList());
+        BangGV.setItems(teachersList);
+    }
+    public void ThemSVButton(ActionEvent e) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/com/Course/TeacherGUI/TeacherListGUI/themGV.fxml"));
+        Parent root = loader.load();
+        Stage signUpStage = new Stage();
+        signUpStage.setTitle("Chỉnh Sửa giáo vụ");
+        signUpStage.setScene(new Scene(root, 609, 570));
+        signUpStage.show();
+        signUpStage.setOnHiding( event -> {
+            teachersList = FXCollections.observableArrayList(TeacherDAO.getALlTeacherList());
+            BangGV.setItems(teachersList);
+        } );
+    }
+    public void CapNhatSVButton(ActionEvent e) throws IOException {
+        Teacher result = BangGV.getSelectionModel().getSelectedItem();
+        if(result != null) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/com/Course/TeacherGUI/TeacherListGUI/setTTGV.fxml"));
+            Parent root = loader.load();
+            setTTGV control = loader.getController();
+            control.SetTeacher(result);
+            Stage signUpStage = new Stage();
+            signUpStage.setTitle("Chỉnh Sửa giáo vụ");
+            signUpStage.setScene(new Scene(root, 609, 570));
+            signUpStage.show();
+            signUpStage.setOnHiding( event -> {
+                teachersList = FXCollections.observableArrayList(TeacherDAO.getALlTeacherList());
+                BangGV.setItems(teachersList);
+                setUsers(TeacherDAO.getTeacher(User.getIdTea()));
+            } );
+        }
+    }
+    public void XoaSVButton(ActionEvent e){
+        String str ="";
+        Teacher result = BangGV.getSelectionModel().getSelectedItem();
+        if(result != null){
+            TeacherDAO.deleteTeacher(result.getIdTea());
+            str ="Xóa thành công";
+        }else {
+            str ="Xóa thất bại";
+        }
+        Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+        alert1.setTitle("Xóa tài khoản giáo vụ");
+        alert1.setContentText(str);
+        alert1.showAndWait();
+        teachersList = FXCollections.observableArrayList(TeacherDAO.getALlTeacherList());
+        BangGV.setItems(teachersList);
+    }
+    @FXML
+    private void tabSinhvien(Event event) {
+        teachersList = FXCollections.observableArrayList(TeacherDAO.getALlTeacherList());
+        BangGV.setItems(teachersList);
+    }
 
 
 
