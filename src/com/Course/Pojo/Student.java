@@ -19,6 +19,17 @@ public class Student implements Serializable {
     private ClaSs idClass;
     private Set<Course> courses = new HashSet<Course>();
 
+
+    public Student(String passwordStu, String idStu, String nameStu, String sex, Date birthday, String numberPhone, String address) {
+        this.passwordStu = passwordStu;
+        this.idStu = idStu;
+        this.nameStu = nameStu;
+        this.sex = sex;
+        this.birthday = birthday;
+        this.numberPhone = numberPhone;
+        this.address = address;
+    }
+
     public Set<Course> getCourses() {
         return courses;
     }

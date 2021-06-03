@@ -24,4 +24,6 @@ module DKHP {
     opens com.Course.TeacherGUI.TeacherListGUI;
     opens com.Course.TeacherGUI.ObjectListGUI;
     opens com.Course.TeacherGUI.ClassListGUI;
+    opens com.Course.TeacherGUI.StudentListGUI;
+    opens com.Course.TeacherGUI.CourseListGUI;
 }

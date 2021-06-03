@@ -5,6 +5,9 @@ import com.Course.Pojo.*;
 import com.Course.Pojo.Object;
 import com.Course.TeacherGUI.ClassListGUI.ClassList_info;
 import com.Course.TeacherGUI.ObjectListGUI.setTTBomon;
+import com.Course.TeacherGUI.StudentListGUI.XemHPSV;
+import com.Course.TeacherGUI.StudentListGUI.setTTSV;
+import com.Course.TeacherGUI.StudentListGUI.viewCourse;
 import com.Course.TeacherGUI.TeacherListGUI.setTTGV;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -297,7 +300,6 @@ public class GUI_teacher implements Initializable {
         BangMonHoc.setItems(ObjectList);
     }
 
-// Trang Đăng kí Học Phần
 
 
 // Trang học kì
@@ -337,16 +339,6 @@ public class GUI_teacher implements Initializable {
     @FXML
     private Button DeleteHK;
     private ObservableList<Semester> SemesterList ;
-
-
-
-
-
-
-
-
-
-
     @FXML
     private void tabHocki(Event event) {
         inputHK.setItems(lstHK);
@@ -561,8 +553,7 @@ public class GUI_teacher implements Initializable {
     private ObservableList<ClaSs> ClassList ;
     @FXML
     private TextField InputIDSV_Class;
-    public ObservableList<ClassList_info> getListClass()
-    {
+    public ObservableList<ClassList_info> getListClass() {
         ClassList = FXCollections.observableArrayList(ClaSsDAO.getALlCLassList());
         ObservableList<ClassList_info> f = FXCollections.observableArrayList();
         for (ClaSs i : ClassList){
@@ -683,70 +674,95 @@ public class GUI_teacher implements Initializable {
     @FXML
     private TableColumn<Student,String> DiachiSV_column;
     private ObservableList<Student> studentList;
-
     @FXML
-    private void seenHocphanOnAcion(ActionEvent actionEvent) {
-
+    private ChoiceBox<ClaSs> choiceLophoc;
+    @FXML
+    private void seenHocphanOnAcion(ActionEvent actionEvent) throws IOException {
+        Student result = BangSV.getSelectionModel().getSelectedItem();
+        if(result != null) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/com/Course/TeacherGUI/StudentListGUI/XemHPSV.fxml"));
+            Parent root = loader.load();
+            XemHPSV control = loader.getController();
+            control.setStudent(result);
+            Stage signUpStage = new Stage();
+            signUpStage.setTitle("Chỉnh Sửa giáo vụ");
+            signUpStage.setScene(new Scene(root, 699, 580));
+            signUpStage.show();
+        }
+    }
+    @FXML
+    private void tabSinhvien(Event event) {
+        studentList =FXCollections.observableArrayList(StudentDAO.getALlStudentList());
+        BangSV.setItems(studentList);
+        ClassList = FXCollections.observableArrayList(ClaSsDAO.getALlCLassList());
+        choiceLophoc.setItems(ClassList);
+    }
+    @FXML
+    private void TimSvtheoLop(ActionEvent actionEvent) {
+        ClaSs result = choiceLophoc.getValue();
+        if(result != null){
+            ObservableList<Student> resultList =FXCollections.observableArrayList(result.getStudents());
+            BangSV.setItems(resultList);
+        }
     }
     public void TimKiemSVButton(ActionEvent e){
-        String result = layIDtimkiemgiaovien.getText();
-        ObservableList<Teacher> resultList = FXCollections.observableArrayList();
-        Teacher h = TeacherDAO.getTeacher(result);
+        String result = layIDtimkiemsv.getText();
+        ObservableList<Student> resultList = FXCollections.observableArrayList();
+        Student h = StudentDAO.getStudent(result);
         if(h != null){
             resultList.add(h);
         }
-        BangGV.setItems(resultList);
+        BangSV.setItems(resultList);
         if(result.trim() == ""){
-            BangGV.setItems(teachersList);
+            BangSV.setItems(studentList);
         }
     }
     public void ResetSVButton(ActionEvent e){
         String str =null;
-        Teacher result = BangGV.getSelectionModel().getSelectedItem();
+        Student result = BangSV.getSelectionModel().getSelectedItem();
         if(result != null){
-            result.setPasswordTea(result.getIdTea());
-            TeacherDAO.updateTeacher(result);
+            result.setPasswordStu(result.getIdStu());
+            StudentDAO.updateStudent(result);
             str ="Reset thành công";
         }else {
             str ="Reset thất bại";
         }
         Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
-        alert1.setTitle("Reset mật khẩu khoản giáo vụ");
+        alert1.setTitle("Reset mật khẩu khoản sinh viên");
         alert1.setContentText(str);
         alert1.showAndWait();
-        teachersList = FXCollections.observableArrayList(TeacherDAO.getALlTeacherList());
-        BangGV.setItems(teachersList);
+        studentList =FXCollections.observableArrayList(StudentDAO.getALlStudentList());
+        BangSV.setItems(studentList);
     }
     public void ThemSVButton(ActionEvent e) throws IOException {
-
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/com/Course/TeacherGUI/TeacherListGUI/themGV.fxml"));
+        loader.setLocation(getClass().getResource("/com/Course/TeacherGUI/StudentListGUI/themSV.fxml"));
         Parent root = loader.load();
         Stage signUpStage = new Stage();
-        signUpStage.setTitle("Chỉnh Sửa giáo vụ");
+        signUpStage.setTitle("Chỉnh Sửa Sinh viên");
         signUpStage.setScene(new Scene(root, 609, 570));
         signUpStage.show();
         signUpStage.setOnHiding( event -> {
-            teachersList = FXCollections.observableArrayList(TeacherDAO.getALlTeacherList());
-            BangGV.setItems(teachersList);
+            studentList =FXCollections.observableArrayList(StudentDAO.getALlStudentList());
+            BangSV.setItems(studentList);
         } );
     }
     public void CapNhatSVButton(ActionEvent e) throws IOException {
-        Teacher result = BangGV.getSelectionModel().getSelectedItem();
+        Student result = BangSV.getSelectionModel().getSelectedItem();
         if(result != null) {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/com/Course/TeacherGUI/TeacherListGUI/setTTGV.fxml"));
+            loader.setLocation(getClass().getResource("/com/Course/TeacherGUI/StudentListGUI/setTTSV.fxml"));
             Parent root = loader.load();
-            setTTGV control = loader.getController();
-            control.SetTeacher(result);
+            setTTSV control = loader.getController();
+            control.SetStudent(result);
             Stage signUpStage = new Stage();
             signUpStage.setTitle("Chỉnh Sửa giáo vụ");
             signUpStage.setScene(new Scene(root, 609, 570));
             signUpStage.show();
             signUpStage.setOnHiding( event -> {
-                teachersList = FXCollections.observableArrayList(TeacherDAO.getALlTeacherList());
-                BangGV.setItems(teachersList);
-                setUsers(TeacherDAO.getTeacher(User.getIdTea()));
+                studentList =FXCollections.observableArrayList(StudentDAO.getALlStudentList());
+                BangSV.setItems(studentList);
             } );
         }
     }
@@ -763,14 +779,107 @@ public class GUI_teacher implements Initializable {
         alert1.setTitle("Xóa tài khoản giáo vụ");
         alert1.setContentText(str);
         alert1.showAndWait();
-        teachersList = FXCollections.observableArrayList(TeacherDAO.getALlTeacherList());
-        BangGV.setItems(teachersList);
+        studentList =FXCollections.observableArrayList(StudentDAO.getALlStudentList());
+        BangSV.setItems(studentList);
     }
+    // trang hoc phan
     @FXML
-    private void tabSinhvien(Event event) {
-        teachersList = FXCollections.observableArrayList(TeacherDAO.getALlTeacherList());
-        BangGV.setItems(teachersList);
+    private TextField layHocPhan;
+    @FXML
+    private TableView<viewCourse> Banghocphan;
+    @FXML
+    private TableColumn<viewCourse,String> mamonhoc;
+    @FXML
+    private TableColumn<viewCourse,String> monhoc;
+    @FXML
+    private TableColumn<viewCourse,String> giangvien;
+    @FXML
+    private TableColumn<viewCourse,String> phong;
+    @FXML
+    private TableColumn<viewCourse,String> ngay;
+    @FXML
+    private TableColumn<viewCourse,String> gio;
+    @FXML
+    private TableColumn<viewCourse,String> Slot;
+    @FXML
+    private DatePicker inputNgayBDDK;
+    @FXML
+    private DatePicker inputNgayBDKT;
+
+
+
+
+
+
+
+
+
+    @FXML
+    private void tabhocphan(Event event) {
     }
+
+    @FXML
+    private void XoaHPButton(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    private void CapNhatHPButton(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    private void ThemHPButton(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    private void seenDSSVonAction(ActionEvent actionEvent) {
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // trang kì đăng kí học phần
+    @FXML
+    private TableView<Coursesession> BangKDKHP;
+    @FXML
+    private TableColumn<Coursesession,String> sttKi;
+    @FXML
+    private TableColumn<Coursesession,String> NgayBDDK;
+    @FXML
+    private TableColumn<Coursesession,String> NgayKTDK;
+
+
+
+
+
+    @FXML
+    private void tabKiDKHK(Event event) {
+    }
+
+    @FXML
+    private void ThemDKHPonAction(ActionEvent actionEvent) {
+    }
+
+
+
+
+
+
+
+
 
 
 
@@ -823,25 +932,15 @@ public class GUI_teacher implements Initializable {
         tenmon_column.setCellValueFactory(new PropertyValueFactory<Object,String>("nameOb"));
         Sotinchi_column.setCellValueFactory(new PropertyValueFactory<Object,Integer>("credit"));
         BangMonHoc.setItems(ObjectList);
-        //
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        //Bảng sinh viên
+        studentList = FXCollections.observableArrayList(StudentDAO.getALlStudentList());
+        IDSV_column.setCellValueFactory(new PropertyValueFactory<Student,String>("idStu"));
+        HotenSV_column.setCellValueFactory(new PropertyValueFactory<Student,String>("nameStu"));
+        GioitinhSV_column.setCellValueFactory(new PropertyValueFactory<Student,String>("sex"));
+        NgaysinhSV_column.setCellValueFactory(new PropertyValueFactory<Student,Date>("birthday"));
+        SDTSV_coulumn.setCellValueFactory(new PropertyValueFactory<Student,String>("numberPhone"));
+        DiachiSV_column.setCellValueFactory(new PropertyValueFactory<Student,String>("address"));
+        BangSV.setItems(studentList);
 
     }
 

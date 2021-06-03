@@ -64,11 +64,7 @@ public class ClaSs implements Serializable {
 
     @Override
     public String toString() {
-        return "Class{" +
-                "idClss=" + idClss +
-                ", nameClass='" + nameClass + '\'' +
-                ", students=" + students.toString() +
-                '}';
+        return nameClass;
     }
 
     @Override

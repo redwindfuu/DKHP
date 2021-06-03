@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Course.TeacherGUI.StudentListGUI.XemHPSV">
+   <center>
+      <Pane prefHeight="481.0" prefWidth="699.0" style="-fx-background-color: #33f5db;" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="Banghocphan" layoutX="18.0" layoutY="16.0" prefHeight="451.0" prefWidth="663.0">
+              <columns>
+                <TableColumn fx:id="mamonhoc" prefWidth="82.40002250671387" text="Mã môn học" />
+                  <TableColumn fx:id="monhoc" prefWidth="130.39997100830078" text="Môn học" />
+                  <TableColumn fx:id="giangvien" minWidth="7.199951171875" prefWidth="74.4000244140625" text="Giảng viên" />
+                  <TableColumn fx:id="hocki" prefWidth="63.199951171875" text="Học Kì" />
+                <TableColumn fx:id="Namhoc" prefWidth="97.60003662109375" text="Năm học" />
+                  <TableColumn fx:id="phong" prefWidth="61.600006103515625" text="Phòng" />
+                  <TableColumn fx:id="ngay" prefWidth="77.5999755859375" text="Ngày học" />
+                  <TableColumn fx:id="gio" prefWidth="70.4000244140625" text="Giờ " />
+              </columns>
+            </TableView>
+         </children>
+      </Pane>
+   </center>
+   <top>
+      <Pane prefHeight="97.0" prefWidth="699.0" style="-fx-background-color: #fafa20;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="iconhocphan" fitHeight="87.0" fitWidth="84.0" layoutX="14.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../img/online-course.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="227.0" layoutY="14.0" prefHeight="69.0" prefWidth="214.0" text="Học Phần">
+               <font>
+                  <Font name="System Bold" size="47.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </top>
+</BorderPane>

@@ -1,6 +1,8 @@
 package com.Course.TeacherGUI.StudentListGUI;
 
+import com.Course.DAO.StudentDAO;
 import com.Course.DAO.TeacherDAO;
+import com.Course.Pojo.Student;
 import com.Course.Pojo.Teacher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,7 +17,7 @@ import java.net.URL;
 import java.sql.Date;
 import java.util.ResourceBundle;
 
-public class themGV implements Initializable {
+public class themSV implements Initializable {
     @FXML
     private ImageView iconPage;
     @FXML
@@ -53,10 +55,10 @@ public class themGV implements Initializable {
                 && !SDT.getText().trim().isEmpty()&& (SDT.getText().length()<=10)
                 && !ID.getText().trim().isEmpty() &&
                 !Matkhau.getText().trim().isEmpty() && Ngaysinh != null){
-            if (TeacherDAO.getTeacher(ID.getText()) == null) {
+            if (StudentDAO.getStudent(ID.getText()) == null) {
 
-                    Teacher newteacher = new Teacher(Matkhau.getText(), ID.getText(), Hoten.getText(), Gender, Date.valueOf(Ngaysinh.getValue()), SDT.getText(), Diachi.getText());
-                    TeacherDAO.addTeacher(newteacher);
+                    Student newteacher = new Student(Matkhau.getText(), ID.getText(), Hoten.getText(), Gender, Date.valueOf(Ngaysinh.getValue()), SDT.getText(), Diachi.getText());
+                    StudentDAO.addStudent(newteacher);
                     System.out.println("tao giao vu");
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Đăng kí");

@@ -25,11 +25,7 @@ public class Object implements Serializable {
 
     @Override
     public String toString() {
-        return "Object{" +
-                "idOb='" + idOb + '\'' +
-                ", nameOb='" + nameOb + '\'' +
-                ", credit=" + credit +
-                '}';
+        return  nameOb ;
     }
     @Override
     public boolean equals(java.lang.Object o) {
