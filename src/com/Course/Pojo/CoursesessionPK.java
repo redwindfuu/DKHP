@@ -39,9 +39,6 @@ public class CoursesessionPK implements Serializable {
 
     @Override
     public String toString() {
-        return "CoursesessionPK{" +
-                "idSemester=" + idSemester.toString() +
-                ", timeBeg=" + timeBeg.toString() +
-                '}';
+        return  timeBeg.toString() ;
     }
 }

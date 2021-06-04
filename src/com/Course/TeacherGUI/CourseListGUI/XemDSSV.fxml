@@ -1,26 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Course.TeacherGUI.StudentListGUI.XemHPSV">
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="669.0" prefWidth="833.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Course.TeacherGUI.CourseListGUI.XemDSSV">
    <center>
       <Pane prefHeight="481.0" prefWidth="699.0" style="-fx-background-color: #33f5db;" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="Banghocphan" layoutX="18.0" layoutY="16.0" prefHeight="451.0" prefWidth="663.0">
-              <columns>
-                <TableColumn fx:id="mamonhoc" prefWidth="82.40002250671387" text="Mã môn học" />
-                  <TableColumn fx:id="monhoc" prefWidth="130.39997100830078" text="Môn học" />
-                  <TableColumn fx:id="giangvien" minWidth="7.199951171875" prefWidth="74.4000244140625" text="Giảng viên" />
-                  <TableColumn fx:id="hocki" prefWidth="63.199951171875" text="Học Kì" />
-                <TableColumn fx:id="Namhoc" prefWidth="97.60003662109375" text="Năm học" />
-                  <TableColumn fx:id="phong" prefWidth="61.600006103515625" text="Phòng" />
-                  <TableColumn fx:id="ngay" prefWidth="77.5999755859375" text="Ngày học" />
-                  <TableColumn fx:id="gio" prefWidth="70.4000244140625" text="Giờ " />
-              </columns>
+            <TableView fx:id="BangSV" layoutX="14.0" layoutY="14.0" prefHeight="487.0" prefWidth="803.0">
+               <columns>
+                  <TableColumn fx:id="IDSV_column" prefWidth="64.00002670288086" text="ID" />
+                  <TableColumn fx:id="HotenSV_column" minWidth="0.0" prefWidth="180.80003356933594" text="Họ và tên" />
+                  <TableColumn fx:id="NgaysinhSV_column" minWidth="0.0" prefWidth="84.79998779296875" text="Ngày sinh" />
+                  <TableColumn fx:id="GioitinhSV_column" minWidth="8.79998779296875" prefWidth="63.20001220703125" text="Giới tính" />
+                  <TableColumn fx:id="SDTSV_coulumn" prefWidth="120.0" text="SĐT" />
+                  <TableColumn fx:id="DiachiSV_column" prefWidth="157.60003662109375" text="Địa chỉ" />
+                  <TableColumn fx:id="Lop_column" prefWidth="66.4000244140625" text="Lớp " />
+                  <TableColumn fx:id="Huy_column" prefWidth="66.4000244140625" text="Hủy" />
+               </columns>
             </TableView>
+            <Button layoutX="610.0" layoutY="522.0" mnemonicParsing="false" onAction="#ThemSVonAction" prefHeight="36.0" prefWidth="96.0" text="Thêm " />
+            <Button layoutX="721.0" layoutY="522.0" mnemonicParsing="false" onAction="#XoaSVAction" prefHeight="36.0" prefWidth="96.0" text="Xóa" />
+            <Label layoutX="290.0" layoutY="525.0" prefHeight="30.0" prefWidth="108.0" text="Mã số sinh viên">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="MSSV" layoutX="398.0" layoutY="528.0" prefHeight="25.0" prefWidth="205.0" />
          </children>
       </Pane>
    </center>
@@ -29,10 +43,10 @@
          <children>
             <ImageView fx:id="iconhocphan" fitHeight="87.0" fitWidth="84.0" layoutX="14.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../img/online-course.png" />
+                  <Image url="@../../../../../img/graduate-user-icon.png" />
                </image>
             </ImageView>
-            <Label layoutX="227.0" layoutY="14.0" prefHeight="69.0" prefWidth="214.0" text="Học Phần">
+            <Label layoutX="147.0" layoutY="14.0" prefHeight="69.0" prefWidth="452.0" text="Danh sách Sinh viên">
                <font>
                   <Font name="System Bold" size="47.0" />
                </font>

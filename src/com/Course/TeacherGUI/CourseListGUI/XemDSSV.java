@@ -1,17 +1,22 @@
 package com.Course.TeacherGUI.CourseListGUI;
 
+import com.Course.DAO.CourseDAO;
+import com.Course.DAO.SemesterDAO;
+import com.Course.DAO.StudentDAO;
+import com.Course.Pojo.ClaSs;
 import com.Course.Pojo.Course;
 import com.Course.Pojo.Student;
-import com.Course.TeacherGUI.StudentListGUI.viewCourse;
+import com.Course.StudentGUI.viewCourse;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
@@ -19,35 +24,39 @@ import java.util.ResourceBundle;
 
 public class XemDSSV implements Initializable {
 
-    private Student student;
+    private Course hocphan;
 
     @FXML
     private ImageView iconhocphan;
     @FXML
-    private TableView<viewCourse>  Banghocphan;
+    private TableView<viewStudent>  BangSV;
     @FXML
-    private TableColumn<viewCourse,String> mamonhoc;
+    private TableColumn<viewStudent,String> IDSV_column;
     @FXML
-    private TableColumn<viewCourse,String> monhoc;
+    private TableColumn<viewStudent,String> HotenSV_column;
     @FXML
-    private TableColumn<viewCourse,String> giangvien;
+    private TableColumn<viewStudent,String> NgaysinhSV_column;
     @FXML
-    private TableColumn<viewCourse,String> hocki;
+    private TableColumn<viewStudent,String> GioitinhSV_column;
     @FXML
-    private TableColumn<viewCourse,String> Namhoc;
+    private TableColumn<viewStudent,String> SDTSV_coulumn;
     @FXML
-    private TableColumn<viewCourse,String> ngay;
+    private TableColumn<viewStudent,String> DiachiSV_column;
     @FXML
-    private TableColumn<viewCourse,String> gio;
+    private TableColumn<viewStudent,ClaSs> Lop_column;
     @FXML
-    private TableColumn<viewCourse,String> phong;
-    ObservableList<viewCourse> h = FXCollections.observableArrayList();
-    public void setStudent(Student st){
-        this.student= st;
-        for (Course i : st.getCourses()) {
-            h.add(new viewCourse(i));
+    private TableColumn<viewStudent, CheckBox> Huy_column;
+    @FXML
+    private TextField MSSV;
+    ObservableList<viewStudent> Lst = FXCollections.observableArrayList();
+    public void setCourse(Course st){
+        Lst.clear();
+        SemesterDAO.getMainSemester();
+        this.hocphan = st;
+        for (Student i : hocphan.getStudents()) {
+            Lst.add(new viewStudent(i));
         }
-        Banghocphan.setItems(h);
+        BangSV.setItems(Lst);
 
     }
 
@@ -58,16 +67,50 @@ public class XemDSSV implements Initializable {
         File Avafile =new File("img/online-course.png");
         Image image = new Image(Avafile.toURI().toString());
         iconhocphan.setImage(image);
-        mamonhoc.setCellValueFactory(new PropertyValueFactory<viewCourse,String>("IDmon"));
-        monhoc.setCellValueFactory(new PropertyValueFactory<viewCourse,String>("tenmon"));
-        giangvien.setCellValueFactory(new PropertyValueFactory<viewCourse,String>("Giangvien"));
-        hocki.setCellValueFactory(new PropertyValueFactory<viewCourse,String>("Hocki"));
-        Namhoc.setCellValueFactory(new PropertyValueFactory<viewCourse,String>("Namhoc"));
-        phong.setCellValueFactory(new PropertyValueFactory<viewCourse,String>("Phong"));
-        ngay.setCellValueFactory(new PropertyValueFactory<viewCourse,String>("Ngay"));
-        gio.setCellValueFactory(new PropertyValueFactory<viewCourse,String>("Gio"));
+        IDSV_column.setCellValueFactory(new PropertyValueFactory<viewStudent,String>("ID"));
+        HotenSV_column.setCellValueFactory(new PropertyValueFactory<viewStudent,String>("hoten"));
+        NgaysinhSV_column.setCellValueFactory(new PropertyValueFactory<viewStudent,String>("ngaysinh"));
+        GioitinhSV_column.setCellValueFactory(new PropertyValueFactory<viewStudent,String>("giotinh"));
+        SDTSV_coulumn.setCellValueFactory(new PropertyValueFactory<viewStudent,String>("sdt"));
+        DiachiSV_column.setCellValueFactory(new PropertyValueFactory<viewStudent,String>("diachi"));
+        Lop_column.setCellValueFactory(new PropertyValueFactory<viewStudent, ClaSs>("lop"));
+        Huy_column.setCellValueFactory(new PropertyValueFactory<viewStudent,CheckBox>("huy"));
+        SemesterDAO.getMainSemester();
 
+    }
 
+    @FXML
+    private void ThemSVonAction(ActionEvent actionEvent) {
+        if(!MSSV.getText().isEmpty()&& StudentDAO.getStudent(MSSV.getText()) != null){
+            hocphan.getStudents().add(StudentDAO.getStudent(MSSV.getText()));
+            CourseDAO.updateCourse(hocphan);
+            Stage stage = (Stage) MSSV.getScene().getWindow();
+            stage.close();
+            Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+            alert1.setTitle("thêm học sinh vào môn học" );
+            alert1.setContentText("thêm thành công ");
+            alert1.showAndWait();
 
+        }
+
+        SemesterDAO.getMainSemester();
+        setCourse(hocphan);
+    }
+
+    @FXML
+    private void XoaSVAction(ActionEvent actionEvent) {
+        for (viewStudent h: Lst) {
+            if(h.getHuy().isSelected()){
+                hocphan.getStudents().remove(h.getSt());
+                CourseDAO.updateCourse(hocphan);
+                Stage stage = (Stage) MSSV.getScene().getWindow();
+                stage.close();
+                Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+                alert1.setTitle("xóa học sinh vào môn học" );
+                alert1.setContentText("xóa thành công ");
+                alert1.showAndWait();
+            }
+        }
+        setCourse(hocphan);
     }
 }

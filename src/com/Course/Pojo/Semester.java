@@ -61,7 +61,7 @@ public class Semester {
         if (this == o) return true;
         if (!(o instanceof Semester)) return false;
         Semester semester = (Semester) o;
-        return Objects.equals(idSemester, semester.idSemester) && Objects.equals(daybeg, semester.daybeg) && Objects.equals(getDayfinal(), semester.getDayfinal());
+        return idSemester.equals(semester.idSemester) && Objects.equals(daybeg, semester.daybeg) && Objects.equals(getDayfinal(), semester.getDayfinal());
     }
 
     @Override

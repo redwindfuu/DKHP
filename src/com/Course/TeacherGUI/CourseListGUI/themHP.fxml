@@ -1,121 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="609.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Course.TeacherGUI.StudentListGUI.themSV">
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Course.TeacherGUI.CourseListGUI.themHP">
    <center>
-      <Pane prefHeight="380.0" prefWidth="610.0" BorderPane.alignment="CENTER">
+      <Pane prefHeight="416.0" prefWidth="677.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="ThemButton" layoutX="258.0" layoutY="419.0" mnemonicParsing="false" onAction="#ThemButtonClick" prefHeight="25.0" prefWidth="93.0" text="Thêm" />
-            <GridPane layoutX="26.0" layoutY="37.0" prefHeight="373.0" prefWidth="564.0">
+            <Button layoutX="332.0" layoutY="419.0" mnemonicParsing="false" onAction="#ThemButtonClick" prefHeight="25.0" prefWidth="93.0" text="Thêm" />
+            <GridPane layoutX="21.0" layoutY="56.0" prefHeight="325.0" prefWidth="702.0" style="-fx-background-color: #f2de05;">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="111.6000244140625" minWidth="0.0" prefWidth="111.6000244140625" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="409.5999877929687" minWidth="10.0" prefWidth="378.40003662109376" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="224.0" minWidth="10.0" prefWidth="50.39996337890619" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="111.20001220703125" minWidth="0.0" prefWidth="0.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="272.59999084472656" minWidth="10.0" prefWidth="178.2" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="359.000048828125" minWidth="10.0" prefWidth="327.2" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.800048828125" minWidth="10.0" prefWidth="152.60001220703123" />
               </columnConstraints>
               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="171.1999954223633" minHeight="10.0" prefHeight="48.000006103515624" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="195.40000762939454" minHeight="10.0" prefHeight="48.799993896484374" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="204.79998779296875" minHeight="10.0" prefHeight="45.599999999999994" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="168.79996337890628" minHeight="10.0" prefHeight="43.99999389648437" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="143.9999755859375" minHeight="10.0" prefHeight="45.599951171875006" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="112.60000000000002" minHeight="10.0" prefHeight="47.99999999999997" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="113.39998779296877" minHeight="10.0" prefHeight="52.80000000000001" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label prefHeight="30.0" prefWidth="112.0" text="ID">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
+                  <Label text="Môn học : ">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold Italic" size="18.0" />
                      </font>
-                  </Label>
-                  <Label prefHeight="33.0" prefWidth="112.0" text="Họ Tên" GridPane.rowIndex="2">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label prefHeight="35.0" prefWidth="112.0" text="SĐT" GridPane.rowIndex="5">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label prefHeight="32.0" prefWidth="112.0" text="Địa chỉ" GridPane.rowIndex="6">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label prefHeight="35.0" prefWidth="112.0" text="Ngày Sinh" GridPane.rowIndex="4">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label prefHeight="38.0" prefWidth="112.0" text="Giới tính" GridPane.rowIndex="3">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label prefHeight="32.0" prefWidth="111.0" text="Mật khẩu" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="ID" GridPane.columnIndex="1">
-                     <GridPane.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField fx:id="Hoten" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <GridPane.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField fx:id="Diachi" prefHeight="26.0" prefWidth="278.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                     <GridPane.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField fx:id="SDT" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                     <GridPane.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <DatePicker fx:id="Ngaysinh" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
-                  </DatePicker>
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                     <children>
-                        <RadioButton fx:id="Nam" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#getMale" selected="true" text="Nam">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="GenderList" />
-                           </toggleGroup>
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </RadioButton>
-                        <RadioButton fx:id="Nu" layoutX="148.0" layoutY="18.0" mnemonicParsing="false" onAction="#getFemale" text="Nữ" toggleGroup="$GenderList">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </RadioButton>
-                     </children>
+                  </Label>
+                  <Label text="Kì đăng kí :" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
                      <GridPane.margin>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets left="20.0" />
                      </GridPane.margin>
-                  </Pane>
-                  <PasswordField fx:id="Matkhau" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  </Label>
+                  <Label text="Tên giảng viên :" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
                      <GridPane.margin>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets left="20.0" />
                      </GridPane.margin>
-                  </PasswordField>
+                  </Label>
+                  <Label text="Số phòng :" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Ca học :" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Ngày :" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Slot :" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <ChoiceBox fx:id="ChoiceMonhoc" prefHeight="26.0" prefWidth="241.0" GridPane.columnIndex="1" />
+                  <ChoiceBox fx:id="ChoiceKiDangki" prefHeight="26.0" prefWidth="246.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ChoiceBox fx:id="ChoiceNgay" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <ChoiceBox fx:id="ChoiceCa" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="giangvien" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="phong" layoutX="156.0" layoutY="131.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="Slot" layoutX="156.0" layoutY="174.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                </children>
             </GridPane>
          </children>
@@ -126,10 +108,10 @@
          <children>
             <ImageView fx:id="iconPage" fitHeight="87.0" fitWidth="104.0" layoutX="8.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../img/businessman.png" />
+                  <Image url="@../../../../../img/online-course.png" />
                </image>
             </ImageView>
-            <Label layoutX="134.0" layoutY="9.0" prefHeight="85.0" prefWidth="442.0" text="Thêm Sinh Viên">
+            <Label layoutX="134.0" layoutY="9.0" prefHeight="85.0" prefWidth="442.0" text="Thêm Học Phần">
                <font>
                   <Font name="System Bold" size="58.0" />
                </font>

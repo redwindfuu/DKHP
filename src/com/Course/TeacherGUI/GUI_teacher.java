@@ -4,11 +4,15 @@ import com.Course.DAO.*;
 import com.Course.Pojo.*;
 import com.Course.Pojo.Object;
 import com.Course.TeacherGUI.ClassListGUI.ClassList_info;
+import com.Course.TeacherGUI.CourseListGUI.XemDSSV;
 import com.Course.TeacherGUI.ObjectListGUI.setTTBomon;
 import com.Course.TeacherGUI.StudentListGUI.XemHPSV;
 import com.Course.TeacherGUI.StudentListGUI.setTTSV;
 import com.Course.TeacherGUI.StudentListGUI.viewCourse;
 import com.Course.TeacherGUI.TeacherListGUI.setTTGV;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,11 +29,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -59,10 +66,7 @@ public class GUI_teacher implements Initializable {
     private GridPane InfoPane;
     @FXML
     private Label helloWorld;
-    @FXML
-    private Label LabelHK;
-    @FXML
-    private Label LabelNamhoc;
+
 
 
     public void setUsers(Teacher users){
@@ -311,7 +315,7 @@ public class GUI_teacher implements Initializable {
     private Label M_LabelNgayBD;
     @FXML
     private Label M_LabelNgayKT;
-    private ObservableList<String> lstHK =  FXCollections.observableArrayList("HK1","HK2","Hk3");
+    private ObservableList<String> lstHK =  FXCollections.observableArrayList("HK1","HK2","HK3");
     @FXML
     private ChoiceBox<String> inputHK;
     @FXML
@@ -757,7 +761,7 @@ public class GUI_teacher implements Initializable {
             setTTSV control = loader.getController();
             control.SetStudent(result);
             Stage signUpStage = new Stage();
-            signUpStage.setTitle("Chỉnh Sửa giáo vụ");
+            signUpStage.setTitle("Chỉnh Sửa sinh viên");
             signUpStage.setScene(new Scene(root, 609, 570));
             signUpStage.show();
             signUpStage.setOnHiding( event -> {
@@ -776,7 +780,7 @@ public class GUI_teacher implements Initializable {
             str ="Xóa thất bại";
         }
         Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
-        alert1.setTitle("Xóa tài khoản giáo vụ");
+        alert1.setTitle("Xóa tài khoản sinh viên");
         alert1.setContentText(str);
         alert1.showAndWait();
         studentList =FXCollections.observableArrayList(StudentDAO.getALlStudentList());
@@ -800,113 +804,161 @@ public class GUI_teacher implements Initializable {
     @FXML
     private TableColumn<viewCourse,String> gio;
     @FXML
-    private TableColumn<viewCourse,String> Slot;
-    @FXML
-    private DatePicker inputNgayBDDK;
-    @FXML
-    private DatePicker inputNgayBDKT;
-
-
-
-
-
-
-
-
+    private TableColumn<viewCourse,Integer> Slot;
+    ObservableList<viewCourse>  CourseList;
+    public ObservableList<viewCourse> getCourseList(){
+        ObservableList<Course> lst = FXCollections.observableList(CourseDAO.getALlCourseList());
+        ObservableList<viewCourse> result = FXCollections.observableArrayList();
+        for (Course h : lst) {
+            if(h.getIdCourse().getIdCoursesession().getIdCoursesession().getIdSemester().equals(MainSemester)){
+                result.add(new viewCourse(h));
+            }
+        }
+        return result;
+    }
 
     @FXML
     private void tabhocphan(Event event) {
+        Banghocphan.setItems(getCourseList());
     }
 
     @FXML
     private void XoaHPButton(ActionEvent actionEvent) {
+        String str ="";
+        viewCourse result = Banghocphan.getSelectionModel().getSelectedItem();
+        Course st =result.getThisCourse();
+        if(result != null){
+            CourseDAO.deleteCourse(st.getIdCourse().getIdOb().getIdOb(),
+                    st.getIdCourse().getIdCoursesession().getIdCoursesession().getIdSemester().getIdSemester(),st.getIdCourse().getIdCoursesession().getIdCoursesession().getTimeBeg(),
+                    st.getIdCourse().getRoom(),st.getIdCourse().getDaystudy(),st.getIdCourse().getTimestudy());
+            str ="Xóa thành công";
+        }else {
+            str ="Xóa thất bại";
+        }
+        Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+        alert1.setTitle("Xóa tài Học phần");
+        alert1.setContentText(str);
+        alert1.showAndWait();
+        Banghocphan.setItems(getCourseList());
+    }
+
+
+    @FXML
+    private void ThemHPButton(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/com/Course/TeacherGUI/CourseListGUI/themHP.fxml"));
+        Parent root = loader.load();
+        Stage signUpStage = new Stage();
+        signUpStage.setTitle("Chỉnh Sửa học phần");
+        signUpStage.setScene(new Scene(root, 744, 560));
+        signUpStage.show();
+        signUpStage.setOnHiding( event -> {
+            Banghocphan.setItems(getCourseList());
+        } );
     }
 
     @FXML
-    private void CapNhatHPButton(ActionEvent actionEvent) {
+    private void seenDSSVonAction(ActionEvent actionEvent) throws IOException {
+        viewCourse result = Banghocphan.getSelectionModel().getSelectedItem();
+        if(result != null) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/com/Course/TeacherGUI/CourseListGUI/XemDSSV.fxml"));
+            Parent root = loader.load();
+            XemDSSV control = loader.getController();
+            control.setCourse(result.getThisCourse());
+            Stage signUpStage = new Stage();
+            signUpStage.setTitle("Chỉnh Sửa học phần");
+            signUpStage.setScene(new Scene(root, 833, 669));
+            signUpStage.show();
+            signUpStage.setOnHiding(Event -> {
+                Banghocphan.setItems(getCourseList());
+            });
+        }
     }
-
     @FXML
-    private void ThemHPButton(ActionEvent actionEvent) {
+    private void TimKiemHocphanButton(ActionEvent actionEvent) {
+        String result = layHocPhan.getText();
+        ObservableList<viewCourse> lst = getCourseList();
+        ObservableList<viewCourse> rulstlst = FXCollections.observableArrayList();
+        if(!result.trim().isEmpty()){
+            for (viewCourse i: lst) {
+                if(i.getIDmon().equals(result)){
+                    rulstlst.add(i);
+                }
+            }
+            Banghocphan.setItems(rulstlst);
+        }else{
+            Banghocphan.setItems(lst);
+        }
     }
-
-    @FXML
-    private void seenDSSVonAction(ActionEvent actionEvent) {
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     // trang kì đăng kí học phần
+    @FXML
+    private Label M_LabelHocKi1;
+    @FXML
+    private Label M_LabelNamhoc1;
+    @FXML
+    private Label M_LabelNgayBD1;
+    @FXML
+    private Label M_LabelNgayKT1;
     @FXML
     private TableView<Coursesession> BangKDKHP;
     @FXML
     private TableColumn<Coursesession,String> sttKi;
     @FXML
-    private TableColumn<Coursesession,String> NgayBDDK;
+    private TableColumn<Coursesession,CoursesessionPK> NgayBDDK;
     @FXML
-    private TableColumn<Coursesession,String> NgayKTDK;
-
-
-
-
-
+    private TableColumn<Coursesession,Date> NgayKTDK;
+    private ObservableList<Coursesession> CoursesessionLists ;
+    @FXML
+    private DatePicker inputNgayBDDK;
+    @FXML
+    private DatePicker inputNgayBDKT;
     @FXML
     private void tabKiDKHK(Event event) {
+        List<Coursesession> lst = CoursesessionDAO.getALlCoursesessionList();
+        CoursesessionLists = FXCollections.observableArrayList();
+       // System.out.println(MainSemester.toString());
+        for (Coursesession i: lst) {
+           // System.out.println(i.getIdCoursesession().getIdSemester().toString());
+            if( i.getIdCoursesession().getIdSemester().equals(MainSemester)){
+                CoursesessionLists.add(i);
+            }
+        }
+        BangKDKHP.setItems(CoursesessionLists);
+        M_LabelHocKi1.setText(MainSemester.getIdSemester().getSemeId());
+        M_LabelNamhoc1.setText(MainSemester.getIdSemester().getYearSeme());
+        M_LabelNgayBD1.setText(MainSemester.getDaybeg().toString());
+        M_LabelNgayKT1.setText(MainSemester.getDayfinal().toString());
     }
 
     @FXML
-    private void ThemDKHPonAction(ActionEvent actionEvent) {
+    private void ThemDKHPonAction(ActionEvent actionEvent)  {
+        if(inputNgayBDDK!= null && inputNgayBDKT != null && CoursesessionDAO.getCoursesession(MainSemester.getIdSemester(),Date.valueOf(inputNgayBDDK.getValue())) == null){
+            LocalDate bd = inputNgayBDDK.getValue();
+            LocalDate kt = inputNgayBDKT.getValue();
+            CoursesessionPK coPK = new CoursesessionPK();
+            coPK.setIdSemester(MainSemester);
+            coPK.setTimeBeg(Date.valueOf(bd));
+            Coursesession co =new Coursesession();
+            co.setIdCoursesession(coPK);
+            co.setTimeFin(Date.valueOf(kt));
+            CoursesessionDAO.addCoursesession(co);
+            List<Coursesession> lst = CoursesessionDAO.getALlCoursesessionList();
+            CoursesessionLists = FXCollections.observableArrayList();
+            for (Coursesession i: lst) {
+                if( i.getIdCoursesession().getIdSemester().equals(MainSemester)){
+                    CoursesessionLists.add(i);
+                }
+            }
+            BangKDKHP.setItems(CoursesessionLists);
+        }else {
+            Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+            alert1.setTitle("thêm kì đăng kí học phần thất bại" );
+            alert1.setContentText("thất bại ");
+            alert1.showAndWait();
+        }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //
 
     @Override
@@ -915,8 +967,7 @@ public class GUI_teacher implements Initializable {
         Image image = new Image(Avafile.toURI().toString());
         TeacherAvatar.setImage(image);
         MainSemester = SemesterDAO.getMainSemester();
-        LabelHK.setText(MainSemester.getIdSemester().getSemeId());
-        LabelNamhoc.setText(MainSemester.getIdSemester().getYearSeme());
+
         //Bảng giáo viên
         teachersList = FXCollections.observableArrayList(TeacherDAO.getALlTeacherList());
         IDGV_column.setCellValueFactory(new PropertyValueFactory<Teacher,String>("idTea"));
@@ -941,9 +992,25 @@ public class GUI_teacher implements Initializable {
         SDTSV_coulumn.setCellValueFactory(new PropertyValueFactory<Student,String>("numberPhone"));
         DiachiSV_column.setCellValueFactory(new PropertyValueFactory<Student,String>("address"));
         BangSV.setItems(studentList);
+        //bảng kì đăng kí học phần
+
+        sttKi.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Coursesession, String>, ObservableValue<String>>() {
+            @Override public ObservableValue<String> call(TableColumn.CellDataFeatures<Coursesession, String> p) {
+                return new ReadOnlyObjectWrapper(BangKDKHP.getItems().indexOf(p.getValue()) + "");
+            }
+        });
+        sttKi.setSortable(false);
+        NgayBDDK.setCellValueFactory(new PropertyValueFactory<Coursesession,CoursesessionPK>("idCoursesession"));
+        NgayKTDK.setCellValueFactory(new PropertyValueFactory<Coursesession,Date>("timeFin"));
+        //bảng học phần
+        mamonhoc.setCellValueFactory(new PropertyValueFactory<viewCourse,String>("IDmon"));
+        monhoc.setCellValueFactory(new PropertyValueFactory<viewCourse,String>("tenmon"));
+        giangvien.setCellValueFactory(new PropertyValueFactory<viewCourse,String>("Giangvien"));
+        phong.setCellValueFactory(new PropertyValueFactory<viewCourse,String>("Phong"));
+        ngay.setCellValueFactory(new PropertyValueFactory<viewCourse,String>("Ngay"));
+        gio.setCellValueFactory(new PropertyValueFactory<viewCourse,String>("Gio"));
+        Slot.setCellValueFactory(new PropertyValueFactory<viewCourse,Integer>("Slot"));
 
     }
-
-
 
 }

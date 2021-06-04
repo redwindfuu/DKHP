@@ -30,7 +30,7 @@
         <property name="slot">
             <column name="slot" sql-type="int" not-null="true"/>
         </property>
-        <set  inverse="false" name="students" table="registration" lazy="false" cascade="save-update">
+        <set  inverse="false" name="students" table="registration" lazy="false" cascade="all">
             <key>
                 <column name="ID_ob" sql-type="varchar(10)" length="10"/>
                 <column name="seme_ID" sql-type="varchar(3)" length="3"/>

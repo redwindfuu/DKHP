@@ -38,9 +38,7 @@ public class Coursesession {
 
     @Override
     public String toString() {
-        return "Coursesession{" +
-                "idCoursesession=" + idCoursesession.toString() +
-                ", timeFin=" + timeFin.toString() +
-                '}';
+        return  idCoursesession.toString() +
+                " đến " + timeFin.toString() ;
     }
 }

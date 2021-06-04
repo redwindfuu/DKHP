@@ -37,7 +37,7 @@ public class SemesterPK implements Serializable {
         if (this == o) return true;
         if (!(o instanceof SemesterPK)) return false;
         SemesterPK that = (SemesterPK) o;
-        return Objects.equals(getSemeId(), that.getSemeId()) && Objects.equals(getYearSeme(), that.getYearSeme());
+        return getSemeId().equals(that.getSemeId()) && getYearSeme().equals(that.getYearSeme());
     }
 
     @Override

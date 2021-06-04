@@ -1,5 +1,7 @@
 package com.Course.Pojo;
 
+import com.Course.DAO.SemesterDAO;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
@@ -45,9 +47,12 @@ public class Course implements Serializable {
 
     public boolean DKHP_forStudent(Course var){
         return (this.getIdCourse().getTimestudy() == var.getIdCourse().getTimestudy())
-                && (this.getIdCourse().getDaystudy() == var.getIdCourse().getDaystudy());
+                && (this.getIdCourse().getDaystudy() == var.getIdCourse().getDaystudy()) && var.getIdCourse().getIdCoursesession().getIdCoursesession().getIdSemester().getIdSemester().equals(SemesterDAO.getMainSemester());
     }
-
+    public boolean DKHP_forTeacher(Course var){
+        return (this.getIdCourse().getTimestudy() == var.getIdCourse().getTimestudy())
+                && (this.getIdCourse().getDaystudy() == var.getIdCourse().getDaystudy())&&(this.getIdCourse().getRoom() == var.getIdCourse().getRoom());
+    }
 
     @Override
     public boolean equals(java.lang.Object o) {
