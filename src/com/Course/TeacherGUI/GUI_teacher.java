@@ -772,9 +772,9 @@ public class GUI_teacher implements Initializable {
     }
     public void XoaSVButton(ActionEvent e){
         String str ="";
-        Teacher result = BangGV.getSelectionModel().getSelectedItem();
+        Student result = BangSV.getSelectionModel().getSelectedItem();
         if(result != null){
-            TeacherDAO.deleteTeacher(result.getIdTea());
+            StudentDAO.deleteStudent(result.getIdStu());
             str ="Xóa thành công";
         }else {
             str ="Xóa thất bại";
