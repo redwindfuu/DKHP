@@ -259,7 +259,7 @@ public class GUI_teacher implements Initializable {
         signUpStage.setTitle("Chỉnh Sửa giáo vụ");
         signUpStage.setScene(new Scene(root, 610, 443));
         signUpStage.show();
-        signUpStage.setOnHiding( event -> {
+        signUpStage.setOnHiding( event -> {//kham khảo code
             ObjectList = FXCollections.observableArrayList(ObjectDAO.getALlObjectList());
             BangMonHoc.setItems(ObjectList);
         } );
@@ -772,9 +772,9 @@ public class GUI_teacher implements Initializable {
     }
     public void XoaSVButton(ActionEvent e){
         String str ="";
-        Teacher result = BangGV.getSelectionModel().getSelectedItem();
+        Student result = BangSV.getSelectionModel().getSelectedItem();
         if(result != null){
-            TeacherDAO.deleteTeacher(result.getIdTea());
+            StudentDAO.deleteStudent(result.getIdStu());
             str ="Xóa thành công";
         }else {
             str ="Xóa thất bại";
@@ -963,9 +963,9 @@ public class GUI_teacher implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        File Avafile =new File("img/professor.png");
-        Image image = new Image(Avafile.toURI().toString());
-        TeacherAvatar.setImage(image);
+        File Avafile =new File("img/professor.png");//kham khảo code
+        Image image = new Image(Avafile.toURI().toString());//kham khảo code
+        TeacherAvatar.setImage(image); ////kham khảo code
         MainSemester = SemesterDAO.getMainSemester();
 
         //Bảng giáo viên
@@ -998,7 +998,7 @@ public class GUI_teacher implements Initializable {
             @Override public ObservableValue<String> call(TableColumn.CellDataFeatures<Coursesession, String> p) {
                 return new ReadOnlyObjectWrapper(BangKDKHP.getItems().indexOf(p.getValue()) + "");
             }
-        });
+        }); //kham khảo code
         sttKi.setSortable(false);
         NgayBDDK.setCellValueFactory(new PropertyValueFactory<Coursesession,CoursesessionPK>("idCoursesession"));
         NgayKTDK.setCellValueFactory(new PropertyValueFactory<Coursesession,Date>("timeFin"));

@@ -17,6 +17,7 @@ module DKHP {
     opens com.Course.Xml;
     opens com.Course.DAO;
     opens com.Course.Pojo;
+    opens com;
     opens com.Course;
     opens com.Course.LoginAndSignup;
     opens com.Course.StudentGUI;

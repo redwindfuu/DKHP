@@ -86,7 +86,7 @@ public class CourseDAO {
         Transaction transaction = null;
         try{
             transaction =session.beginTransaction();
-            session.merge(st);
+            session.merge(st); //kham khảo
             transaction.commit();
         }catch (HibernateException ex){
             ex.printStackTrace();

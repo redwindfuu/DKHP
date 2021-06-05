@@ -35,8 +35,9 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="mysql:mysql-connector-java:8.0.25" level="project" />
     <orderEntry type="library" name="Hibernate 5.4.11-5.4.11" level="project" />
-    <orderEntry type="library" name="com.fasterxml.clustermate:clustermate-json:0.9.25" level="project" />
+    <orderEntry type="library" name="mysql:mysql-connector-java:8.0.25" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-8.0.25" level="project" />
+    <orderEntry type="library" name="javafx-base-16" level="project" />
   </component>
 </module>
